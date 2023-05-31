@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/all_students_model.dart';
 import 'package:quran_automated/modules/keeper/register_save_and_review_screen.dart';
+import 'package:quran_automated/modules/keeper/tests_screen.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/network/end_point.dart';
 import 'package:quran_automated/shared/style/style.dart';
@@ -133,6 +134,18 @@ class FollowAllStudentsScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  if (position == 'supervisor')
+                    IconButton(
+                      onPressed: () {
+                        navigateTo(
+                          context,
+                          TestScreen(
+                            id: model.id,
+                          ),
+                        );
+                      },
+                      icon: const Icon(Icons.question_mark_rounded),
+                    ),
                   if (position == 'keeper')
                     IconButton(
                         onPressed: () {

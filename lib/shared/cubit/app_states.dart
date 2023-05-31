@@ -277,6 +277,46 @@ class ErrorGetQuestionState extends AppStates {}
 
 //
 
+class LoadingGetMyTestState extends AppStates {}
+
+class SuccessGetMyTestState extends AppStates {}
+
+class ErrorGetMyTestState extends AppStates {}
+
+//
+
+class LoadingGetKeeperTestState extends AppStates {}
+
+class SuccessGetKeeperTestState extends AppStates {}
+
+class ErrorGetKeeperTestState extends AppStates {}
+
+//
+
+class LoadingAllReportKeeperState extends AppStates {}
+
+class SuccessAllReportKeeperState extends AppStates {}
+
+class ErrorAllReportKeeperState extends AppStates {}
+
+//
+
+class LoadingAllReportSupervisorState extends AppStates {}
+
+class SuccessAllReportSupervisorState extends AppStates {}
+
+class ErrorAllReportSupervisorState extends AppStates {}
+
+//
+
+class LoadingSendMarkState extends AppStates {}
+
+class SuccessSendMarkState extends AppStates {}
+
+class ErrorSendMarkState extends AppStates {}
+
+//
+
 class LoadingGetReportState extends AppStates {}
 
 class SuccessGetReportState extends AppStates {}
@@ -290,7 +330,6 @@ class LoadingGetAttendanceState extends AppStates {}
 class SuccessGetAttendanceState extends AppStates {}
 
 class ErrorGetAttendanceState extends AppStates {}
-
 
 //
 class TypeQuestionState extends AppStates {}

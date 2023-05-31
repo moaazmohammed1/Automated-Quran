@@ -17,8 +17,10 @@ dependencies:
   shared_preferences: ^2.0.18
   fluttertoast: ^8.2.1
   smooth_page_indicator: ^1.0.1
-  cupertino_icons: ^1.0.2
   intl:
+  flutter_localizations:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:

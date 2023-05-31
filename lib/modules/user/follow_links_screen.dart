@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/modules/DS/all_report_supervisor_screen.dart';
 import 'package:quran_automated/modules/admin/all_admin_screen.dart';
 import 'package:quran_automated/modules/branch/all_branches_screen.dart';
 import 'package:quran_automated/modules/center/all_centers_screen.dart';
 import 'package:quran_automated/modules/groupe/all_groups_screen.dart';
+import 'package:quran_automated/modules/keeper/all_report_keeper_screen.dart';
+import 'package:quran_automated/modules/keeper/my_all_tests_screen.dart';
 import 'package:quran_automated/modules/keeper/report_screen.dart';
 import 'package:quran_automated/modules/manage_account/home_screen.dart';
 import 'package:quran_automated/modules/student/all_student_screen.dart';
@@ -53,7 +56,7 @@ class FollowScreen extends StatelessWidget {
                     //
                     if (position == 'manager' || position == 'admin')
                       textButtonApp(
-                        text: 'Admin',
+                        text: 'Admins',
                         function: () {
                           navigateTo(
                             context,
@@ -68,7 +71,7 @@ class FollowScreen extends StatelessWidget {
                     // position == 'supervisor'
                     )
                       textButtonApp(
-                        text: 'DS',
+                        text: 'Supervisors',
                         function: () {
                           navigateTo(
                             context,
@@ -80,10 +83,7 @@ class FollowScreen extends StatelessWidget {
                     //
                     if (position == 'manager' ||
                         position == 'admin' ||
-                        position == 'supervisor'
-                    // ||
-                    // position == 'keeper'
-                    )
+                        position == 'supervisor')
                       textButtonApp(
                         text: 'Keeper',
                         function: () {
@@ -97,14 +97,9 @@ class FollowScreen extends StatelessWidget {
                     //
                     if (position == 'manager' ||
                         position == 'admin' ||
-                        position == 'supervisor'
-                    // ||
-                    // position == 'keeper'
-                    // ||
-                    // position == 'student'
-                    )
+                        position == 'supervisor')
                       textButtonApp(
-                        text: 'Student',
+                        text: 'Students',
                         function: () {
                           navigateTo(
                             context,
@@ -115,7 +110,7 @@ class FollowScreen extends StatelessWidget {
 
                     if (position == 'keeper')
                       textButtonApp(
-                        text: 'Student',
+                        text: 'Students',
                         function: () {
                           navigateTo(
                             context,
@@ -141,7 +136,20 @@ class FollowScreen extends StatelessWidget {
                           navigateTo(context, ReportScreen());
                         },
                       ),
-
+                    if (position == 'keeper')
+                      textButtonApp(
+                        text: 'Tests Represented',
+                        function: () {
+                          navigateTo(context, AllTestsScreen());
+                        },
+                      ),
+                    if (position == 'keeper')
+                      textButtonApp(
+                        text: 'All Reports',
+                        function: () {
+                          navigateTo(context, AllReportsKeeperScreen());
+                        },
+                      ),
                     //
                     if (position == 'admin' || position == 'manager')
                       textButtonApp(
@@ -153,15 +161,6 @@ class FollowScreen extends StatelessWidget {
                           );
                         },
                       ),
-
-                    //
-                    // if (position == 'admin' ||
-                    //     position == 'manager'
-                    //)
-                    //   textButtonApp(
-                    //     text: 'GCS',
-                    //     function: () {},
-                    //   ),
 
                     //
                     if (position == 'admin' ||
@@ -187,6 +186,16 @@ class FollowScreen extends StatelessWidget {
                           navigateTo(
                             context,
                             FollowAllGroupsScreen(),
+                          );
+                        },
+                      ),
+                    if (position == 'supervisor')
+                      textButtonApp(
+                        text: 'All Reports',
+                        function: () {
+                          navigateTo(
+                            context,
+                            AllReportsSupervisorScreen(),
                           );
                         },
                       ),

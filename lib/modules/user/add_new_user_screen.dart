@@ -375,6 +375,7 @@ class AddUserScreen extends StatelessWidget {
                       if (formKey.currentState!.validate()) {
                         if (type == 'admin') {
                           AppCubit.get(context).addAdmin(
+                            context,
                             fName: fNameController.text,
                             sName: sNameController.text,
                             tName: tNameController.text,

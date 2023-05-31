@@ -1,31 +1,90 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quran_automated/models/test_model.dart';
+import 'package:quran_automated/models/tests_model.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_states.dart';
 
 class QuestionScreen extends StatelessWidget {
-  QuestionScreen({super.key});
-  List<Question> tests = [];
+  QuestionScreen({this.id, super.key});
+  int? id;
+  TextEditingController markController = TextEditingController();
+
+  var formKey = GlobalKey<FormState>();
+  // List<Question> tests = [];
+  TestModel? testModel;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        tests = AppCubit.get(context).tests!;
+        testModel = AppCubit.get(context).testModel!;
         return Scaffold(
           appBar: defaultAppBar(
             context: context,
             title: 'Test Questions',
           ),
           body: Center(
-            child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) =>
-                  container(tests[index].surah!.name!, tests[index].text!),
-              itemCount: tests.length,
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) => container(
+                          testModel!.questions![index].surah!.name!,
+                          testModel!.questions![index].text!),
+                      itemCount: testModel!.questions!.length,
+                    ),
+                  ),
+                  const Divider(thickness: 5),
+                  Container(
+                    height: 60.0,
+                    // decoration: BoxDecoration(
+                    //     border: Border.all(),
+                    //     borderRadius: BorderRadius.circular(8.0)),
+                    padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                    margin: const EdgeInsets.all(15.0),
+                    child: defaultTextFormField(
+                      label: 'Enter Student Mark',
+                      controller: markController,
+                      keyboard: TextInputType.number,
+                      validate: (String? value) {
+                        if (value!.isEmpty) {
+                          return 'place enter student mark';
+                        }
+                        return null;
+                      },
+                    ),
+                    // child: const TextField(
+                    //   style: TextStyle(fontSize: 18.0),
+                    //   decoration: InputDecoration(
+                    //     hintText: 'Enter Student Mark',
+                    //     focusColor: defaultColor,
+                    //     hintStyle: TextStyle(fontSize: 20.0),
+                    //   ),
+                    // ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 15.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                    child: defaultButton(
+                      height: 60.0,
+                      fontSizeText: 17.0,
+                      text: 'Submit Mark',
+                      onPressedFunction: () {
+                        AppCubit.get(context).sendMarkQuestion(
+                          context,
+                          mark: int.parse(markController.text),
+                          testId: testModel!.testId,
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         );

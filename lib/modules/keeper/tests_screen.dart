@@ -163,6 +163,7 @@ class TestScreen extends StatelessWidget {
                       height: 60.0,
                       child: ElevatedButton(
                         onPressed: () {
+                          AppCubit.get(context).testModel = null;
                           if (formKey.currentState!.validate()) {
                             AppCubit.get(context).getQuestion(
                               context,

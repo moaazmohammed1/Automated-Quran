@@ -4,6 +4,7 @@ import 'package:quran_automated/models/my_data_model.dart';
 import 'package:quran_automated/modules/manage_account/update_my_account_screen.dart';
 import 'package:quran_automated/modules/student/attendance_scree.dart';
 import 'package:quran_automated/modules/student/memorization_screen.dart';
+import 'package:quran_automated/modules/student/my_test_mark_screen.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/cubit/app_cubit.dart';
 import 'package:quran_automated/shared/network/end_point.dart';
@@ -113,7 +114,7 @@ class HomeScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          // const SizedBox(height: 50.0),
+                          const SizedBox(height: 50.0),
                           if (position != 'student')
                             Container(
                               margin: const EdgeInsets.only(
@@ -200,13 +201,25 @@ class HomeScreen extends StatelessWidget {
                           if (position == 'student')
                             Container(
                               margin: const EdgeInsets.only(
-                                  right: 20.0, left: 20.0, bottom: 60.0),
+                                  right: 20.0, left: 20.0, bottom: 10.0),
                               child: defaultButton(
                                 text: 'View Attendance Day',
                                 height: 50.0,
                                 onPressedFunction: () {
                                   AppCubit.get(context).getAttendance();
                                   navigateTo(context, AttendanceScreen());
+                                },
+                              ),
+                            ),
+                          if (position == 'student')
+                            Container(
+                              margin: const EdgeInsets.only(
+                                  right: 20.0, left: 20.0, bottom: 60.0),
+                              child: defaultButton(
+                                text: 'View My Test Mark',
+                                height: 50.0,
+                                onPressedFunction: () {
+                                  navigateTo(context, MyTestMarkScreen());
                                 },
                               ),
                             ),

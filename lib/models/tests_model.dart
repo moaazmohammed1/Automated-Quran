@@ -1,3 +1,17 @@
+class TestModel {
+  int? testId;
+  List<Question>? questions = [];
+
+  TestModel.fromJson(Map<String, dynamic> json) {
+    testId = json['test_id'];
+    if (json['questions'] != null) {
+      json['questions'].forEach((v) {
+        questions!.add(Question.fromJson(v));
+      });
+    }
+  }
+}
+
 class Question {
   String? text;
   SurahQuestion? surah;

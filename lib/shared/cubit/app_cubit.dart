@@ -4,17 +4,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/all_centers_model.dart';
 import 'package:quran_automated/models/all_groups_model.dart';
 import 'package:quran_automated/models/all_keepers_model.dart';
+import 'package:quran_automated/models/all_reports_keeper_model.dart';
+import 'package:quran_automated/models/all_reports_supervisor_model.dart';
 import 'package:quran_automated/models/all_students_model.dart';
 import 'package:quran_automated/models/attendance_model.dart';
+import 'package:quran_automated/models/get_keeper_test_model.dart';
+import 'package:quran_automated/models/get_mark_model.dart';
 import 'package:quran_automated/models/get_one_center_model.dart';
 import 'package:quran_automated/models/get_one_groupe_model.dart';
 import 'package:quran_automated/models/get_one_keeper_model.dart';
 import 'package:quran_automated/models/keep_model.dart';
-import 'package:quran_automated/models/test_model.dart';
+import 'package:quran_automated/models/tests_model.dart';
 import 'package:quran_automated/models/user_model.dart';
 import 'package:quran_automated/models/all_admin_model.dart';
 import 'package:quran_automated/models/my_data_model.dart';
 import 'package:quran_automated/modules/DS/all_ds_screen.dart';
+import 'package:quran_automated/modules/DS/all_report_supervisor_screen.dart';
 import 'package:quran_automated/modules/admin/all_admin_screen.dart';
 import 'package:quran_automated/modules/center/all_centers_screen.dart';
 import 'package:quran_automated/modules/groupe/all_groups_screen.dart';
@@ -191,7 +196,8 @@ class AppCubit extends Cubit<AppStates> {
   /// ADD Admin ///
 
   UserModel? adminModel;
-  void addAdmin({
+  void addAdmin(
+    context, {
     required String fName,
     required String sName,
     required String tName,
@@ -222,7 +228,12 @@ class AppCubit extends Cubit<AppStates> {
     ).then((value) {
       adminModel = UserModel.fromJson(value.data);
       getAllAdminData();
+      showToast(
+        msg: adminModel!.message!,
+        state: ToastStates.SUCCESS,
+      );
       emit(AddAdminSuccessState());
+      navigateTo(context, FollowAllAdminScreen());
     }).catchError((error) {
       Map<String, dynamic> responseData =
           json.decode(error.response.toString());
@@ -395,7 +406,7 @@ class AppCubit extends Cubit<AppStates> {
         newSuffix = isNewPassword
             ? Icons.visibility_outlined
             : Icons.visibility_off_outlined;
-        ;
+
         break;
       case 'confirmSuffix':
         confirmSuffix = isConfirmPassword
@@ -1175,8 +1186,10 @@ class AppCubit extends Cubit<AppStates> {
 
   // Get Question to Test
 
-  // Question? question;
-  List<Question>? tests = [];
+  // TestModel? testModel;
+  // List<TestModel>? testModelList = [];
+  TestModel? testModel;
+
   getQuestion(
     context, {
     int? fromJuz,
@@ -1186,33 +1199,172 @@ class AppCubit extends Cubit<AppStates> {
     int? studentId,
   }) {
     emit(LoadingGetQuestionState());
-    DioHelper.getData(
-      url:
-          '/auto/keepers/tests/generate?from=$fromJuz&to=$toJuz&ayahs_no=$questionNo&type=$type&student_id=$studentId',
-      token: token,
-    ).then((value) {
-      tests = [];
-      value.data.forEach((v) {
-        tests!.add(Question.fromJson(v));
-      });
-      navigateTo(context, QuestionScreen());
-      // showToast(msg: value.data['message'], state: ToastStates.SUCCESS);
+    if (position == 'keeper') {
+      DioHelper.getData(
+        url:
+            '/auto/keepers/tests/generate?from=$fromJuz&to=$toJuz&ayahs_no=$questionNo&type=$type&student_id=$studentId',
+        token: token,
+      ).then((value) {
+        // testModelList = [];
+        navigateTo(context, QuestionScreen(id: studentId));
 
-      emit(SuccessGetQuestionState());
-    }).catchError((error) {
-      Map<String, dynamic> responseData =
-          json.decode(error.response.toString());
-      String errorMessage = responseData['message'];
-      showToast(msg: errorMessage, state: ToastStates.ERROR);
-      printStatement(error.toString());
-      emit(ErrorGetQuestionState());
-    });
+        testModel = TestModel.fromJson(value.data[0]);
+
+        emit(SuccessGetQuestionState());
+      }).catchError((error) {
+        Map<String, dynamic> responseData =
+            json.decode(error.response.toString());
+        String errorMessage = responseData['message'];
+        showToast(msg: errorMessage, state: ToastStates.ERROR);
+        printStatement(error.toString());
+        emit(ErrorGetQuestionState());
+      });
+    }
+    if (position == 'supervisor') {
+      DioHelper.getData(
+        url:
+            '/auto/supervisors/mng/generate?from=$fromJuz&to=$toJuz&student_id=$studentId&type=$type&ayahs_no=$questionNo',
+        token: token,
+      ).then((value) {
+        // testModelList = [];
+        navigateTo(context, QuestionScreen(id: studentId));
+
+        testModel = TestModel.fromJson(value.data[0]);
+
+        emit(SuccessGetQuestionState());
+      }).catchError((error) {
+        Map<String, dynamic> responseData =
+            json.decode(error.response.toString());
+        String errorMessage = responseData['message'];
+        showToast(msg: errorMessage, state: ToastStates.ERROR);
+        printStatement(error.toString());
+        emit(ErrorGetQuestionState());
+      });
+    }
   }
 
   String selectedTypeQuestion = '';
   selectedTypeQuestions({required String type}) {
     selectedTypeQuestion = type;
     emit(TypeQuestionState());
+  }
+
+  sendMarkQuestion(
+    context, {
+    int? mark,
+    int? testId,
+  }) {
+    emit(LoadingSendMarkState());
+
+    DioHelper.postData(
+      url: '/auto/keepers/tests/submit-mark',
+      dataFromUser: {
+        'mark': mark,
+        'test_id': testId,
+      },
+      token: token,
+    ).then((value) {
+      if (position == 'keeper') {
+        navigateTo(context, FollowAllStudentsInGroupeScreen());
+      }
+      if (position == 'supervisor') {
+        navigateTo(context, FollowAllStudentsScreen());
+      }
+      showToast(msg: value.data['message'], state: ToastStates.SUCCESS);
+      emit(SuccessSendMarkState());
+    }).catchError((error) {
+      Map<String, dynamic> responseData =
+          json.decode(error.response.toString());
+      String errorMessage = responseData['message'];
+      showToast(msg: errorMessage, state: ToastStates.ERROR);
+      printStatement(error.toString());
+      emit(ErrorSendMarkState());
+    });
+  }
+
+  GetMyTestsModel? getMyTestsModel;
+  getMyTest() {
+    emit(LoadingGetMyTestState());
+    DioHelper.getData(
+      url: '/auto/students/mng/get-my-tests',
+      // url: '/auto/keepers/tests/index',
+      token: token,
+    ).then((value) {
+      // navigateTo(context, MyTestScreen(id: studentId));
+
+      getMyTestsModel = GetMyTestsModel.fromJson(value.data);
+
+      emit(SuccessGetMyTestState());
+    }).catchError((error) {
+      Map<String, dynamic> responseData =
+          json.decode(error.response.toString());
+      String errorMessage = responseData['message'];
+      showToast(msg: errorMessage, state: ToastStates.ERROR);
+      printStatement(error.toString());
+      emit(ErrorGetMyTestState());
+    });
+  }
+
+  GetKeeperTestsModel? getKeeperTestsModel;
+  getKeeperTests() {
+    emit(LoadingGetKeeperTestState());
+    DioHelper.getData(
+      url: '/auto/keepers/tests/index',
+      token: token,
+    ).then((value) {
+      // navigateTo(context, KeeperTestScreen(id: studentId));
+
+      getKeeperTestsModel = GetKeeperTestsModel.fromJson(value.data);
+
+      emit(SuccessGetKeeperTestState());
+    }).catchError((error) {
+      Map<String, dynamic> responseData =
+          json.decode(error.response.toString());
+      String errorMessage = responseData['message'];
+      showToast(msg: errorMessage, state: ToastStates.ERROR);
+      printStatement(error.toString());
+      emit(ErrorGetKeeperTestState());
+    });
+  }
+
+  AllReportKeeperModel? allReportKeeperModel;
+  getAllReportKeeper() {
+    emit(LoadingAllReportKeeperState());
+    DioHelper.getData(
+      url: '/auto/keepers/report/my-reports',
+      token: token,
+    ).then((value) {
+      allReportKeeperModel = AllReportKeeperModel.fromJson(value.data);
+
+      emit(SuccessAllReportKeeperState());
+    }).catchError((error) {
+      Map<String, dynamic> responseData =
+          json.decode(error.response.toString());
+      String errorMessage = responseData['message'];
+      showToast(msg: errorMessage, state: ToastStates.ERROR);
+      printStatement(error.toString());
+      emit(ErrorAllReportKeeperState());
+    });
+  }
+
+  AllReportSupervisorModel? allReportSupervisorModel;
+  getAllReportSupervisor() {
+    emit(LoadingAllReportSupervisorState());
+    DioHelper.getData(
+      url: '/auto/supervisors/mng/keepers-report',
+      token: token,
+    ).then((value) {
+      allReportSupervisorModel = AllReportSupervisorModel.fromJson(value.data);
+
+      emit(SuccessAllReportSupervisorState());
+    }).catchError((error) {
+      Map<String, dynamic> responseData =
+          json.decode(error.response.toString());
+      String errorMessage = responseData['message'];
+      showToast(msg: errorMessage, state: ToastStates.ERROR);
+      printStatement(error.toString());
+      emit(ErrorAllReportSupervisorState());
+    });
   }
 
   /* Report */
