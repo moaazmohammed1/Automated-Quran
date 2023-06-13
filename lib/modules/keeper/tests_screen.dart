@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
@@ -21,7 +22,9 @@ class TestScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: defaultAppBar(
-              context: context, title: 'Generate Questions', centerTitle: true),
+              context: context,
+              title: '${getLang(context, "generateQuestions")}',
+              centerTitle: true),
           body: Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
@@ -36,11 +39,11 @@ class TestScreen extends StatelessWidget {
                       keyboard: TextInputType.number,
                       validate: (String? value) {
                         if (value!.isEmpty) {
-                          return 'place enter your From Juz';
+                          return '${getLang(context, "placeEnterYourFromJuz")}';
                         }
                         return null;
                       },
-                      label: 'From Juz',
+                      label: '${getLang(context, "fromJuzTest")}',
                     ),
                     const SizedBox(height: 15.0),
                     defaultTextFormField(
@@ -48,11 +51,11 @@ class TestScreen extends StatelessWidget {
                       keyboard: TextInputType.number,
                       validate: (String? value) {
                         if (value!.isEmpty) {
-                          return 'place enter your To Juz';
+                          return '${getLang(context, "placeEnterYourToJuz")}';
                         }
                         return null;
                       },
-                      label: 'To Juz',
+                      label: '${getLang(context, "toJuzTest")}',
                     ),
                     const SizedBox(height: 15.0),
                     defaultTextFormField(
@@ -60,11 +63,11 @@ class TestScreen extends StatelessWidget {
                       keyboard: TextInputType.number,
                       validate: (String? value) {
                         if (value!.isEmpty) {
-                          return 'place enter your Question Number';
+                          return '${getLang(context, "placeEnterYourQuestionNumber")}';
                         }
                         return null;
                       },
-                      label: 'Question Number',
+                      label: '${getLang(context, "questionNumber")}',
                     ),
                     const SizedBox(height: 15.0),
                     Container(
@@ -102,9 +105,10 @@ class TestScreen extends StatelessWidget {
                                                         type: 'single');
                                               },
                                             ),
-                                            const Text(
-                                              'single',
-                                              style: TextStyle(fontSize: 18.0),
+                                            Text(
+                                              '${getLang(context, "single")}',
+                                              style: const TextStyle(
+                                                  fontSize: 18.0),
                                             ),
                                           ],
                                         ),
@@ -120,9 +124,10 @@ class TestScreen extends StatelessWidget {
                                                         type: 'group');
                                               },
                                             ),
-                                            const Text(
-                                              'group',
-                                              style: TextStyle(fontSize: 18.0),
+                                            Text(
+                                              '${getLang(context, "group")}',
+                                              style: const TextStyle(
+                                                  fontSize: 18.0),
                                             ),
                                           ],
                                         ),
@@ -139,7 +144,7 @@ class TestScreen extends StatelessWidget {
                             Text(
                               AppCubit.get(context).selectedTypeQuestion != ''
                                   ? AppCubit.get(context).selectedTypeQuestion
-                                  : 'Type Question',
+                                  : '${getLang(context, "typeQuestion")}',
                               style: const TextStyle(
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
@@ -180,9 +185,9 @@ class TestScreen extends StatelessWidget {
                             );
                           }
                         },
-                        child: const Text(
-                          'Generate Questions',
-                          style: TextStyle(fontSize: 18.0),
+                        child: Text(
+                          '${getLang(context, "generateQuestions")}',
+                          style: const TextStyle(fontSize: 18.0),
                         ),
                       ),
                     ),

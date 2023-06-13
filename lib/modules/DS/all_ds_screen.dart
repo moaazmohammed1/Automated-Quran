@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../models/all_supervisor_model.dart';
 import '../../models/data_model.dart';
+import '../../shared/components/drawer_component.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_states.dart';
 import '../user/follow_links_screen.dart';
@@ -22,7 +24,7 @@ class FollowAllDSScreen extends StatelessWidget {
           AppCubit.get(context).getAllDirectSupervisorData();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('All Direct Supervisor\'s'),
+              title: Text('${getLang(context, "allDs")}'),
               centerTitle: true,
             ),
             body: const Center(
@@ -37,7 +39,7 @@ class FollowAllDSScreen extends StatelessWidget {
           if (allDirectSupervisorModel!.supervisors!.isNotEmpty) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Direct Supervisor\'s'),
+                title: Text('${getLang(context, "allDs")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -67,12 +69,12 @@ class FollowAllDSScreen extends StatelessWidget {
                   itemCount: allDirectSupervisorModel!.supervisors!.length,
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Direct Supervisor\'s'),
+                title: Text('${getLang(context, "allDs")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -86,16 +88,16 @@ class FollowAllDSScreen extends StatelessWidget {
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.person_off_sharp,
                       color: Colors.grey,
                       size: 150.0,
                     ),
-                    SizedBox(height: 50.0),
+                    const SizedBox(height: 50.0),
                     Text(
-                      'Direct Supervisor\'s Not Found',
-                      style: TextStyle(
+                      '${getLang(context, "dsNotFound")}',
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                         fontSize: 30.0,
@@ -104,7 +106,7 @@ class FollowAllDSScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           }
         }

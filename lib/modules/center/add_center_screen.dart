@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/all_branches_model.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
@@ -34,7 +35,9 @@ class _AddCenterScreenState extends State<AddCenterScreen> {
           allBranchesModel = AppCubit.get(context).allBranchesModel;
           return Scaffold(
             appBar: defaultAppBar(
-                context: context, title: 'Add Center', centerTitle: true),
+                context: context,
+                title: '${getLang(context, "addCenter")}',
+                centerTitle: true),
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Padding(
@@ -49,11 +52,11 @@ class _AddCenterScreenState extends State<AddCenterScreen> {
                         keyboard: TextInputType.text,
                         validate: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Center Name is required';
+                            return '${getLang(context, "centerNameRequired")}';
                           }
                           return null;
                         },
-                        label: 'Center Name',
+                        label: '${getLang(context, "centerName")}',
                       ),
                       const SizedBox(height: 20),
                       Container(
@@ -92,10 +95,10 @@ class _AddCenterScreenState extends State<AddCenterScreen> {
                                                           status: 'active');
                                                 },
                                               ),
-                                              const Text(
-                                                'active',
-                                                style:
-                                                    TextStyle(fontSize: 18.0),
+                                              Text(
+                                                '${getLang(context, "active")}',
+                                                style: const TextStyle(
+                                                    fontSize: 18.0),
                                               ),
                                             ],
                                           ),
@@ -112,10 +115,10 @@ class _AddCenterScreenState extends State<AddCenterScreen> {
                                                           status: 'pending');
                                                 },
                                               ),
-                                              const Text(
-                                                'pending',
-                                                style:
-                                                    TextStyle(fontSize: 18.0),
+                                              Text(
+                                                '${getLang(context, "pending")}',
+                                                style: const TextStyle(
+                                                    fontSize: 18.0),
                                               ),
                                             ],
                                           ),
@@ -132,10 +135,10 @@ class _AddCenterScreenState extends State<AddCenterScreen> {
                                                           status: 'inactive');
                                                 },
                                               ),
-                                              const Text(
-                                                'inactive',
-                                                style:
-                                                    TextStyle(fontSize: 18.0),
+                                              Text(
+                                                '${getLang(context, "inactive")}',
+                                                style: const TextStyle(
+                                                    fontSize: 18.0),
                                               ),
                                             ],
                                           ),
@@ -152,7 +155,7 @@ class _AddCenterScreenState extends State<AddCenterScreen> {
                               Text(
                                 AppCubit.get(context).selectedCenterStatus != ''
                                     ? AppCubit.get(context).selectedCenterStatus
-                                    : 'Center Status',
+                                    : '${getLang(context, "centerStatus")}',
                                 style: const TextStyle(
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold,
@@ -173,7 +176,7 @@ class _AddCenterScreenState extends State<AddCenterScreen> {
                       defaultTextFormField(
                         controller: localRegionController,
                         keyboard: TextInputType.text,
-                        label: 'Local region (option)',
+                        label: '${getLang(context, "localRegion")}',
                       ),
                       const SizedBox(height: 20),
                       Container(
@@ -246,8 +249,8 @@ class _AddCenterScreenState extends State<AddCenterScreen> {
                             children: [
                               Text(
                                 AppCubit.get(context).selectedBranchId != null
-                                    ? 'Branch : ${allBranchesModel!.branches![AppCubit.get(context).selectedBranchId!].name}'
-                                    : 'Branches',
+                                    ? '${getLang(context, "branch")} : ${allBranchesModel!.branches![AppCubit.get(context).selectedBranchId!].name}'
+                                    : '${getLang(context, "branches")}',
                                 style: const TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.bold,
@@ -266,7 +269,7 @@ class _AddCenterScreenState extends State<AddCenterScreen> {
                       ),
                       const SizedBox(height: 30),
                       defaultButton(
-                        text: 'create',
+                        text: '${getLang(context, "create")}',
                         height: 60.0,
                         fontSizeText: 18.0,
                         onPressedFunction: () {

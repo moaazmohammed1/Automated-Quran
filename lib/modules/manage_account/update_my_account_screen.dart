@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/my_data_model.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/cubit/app_cubit.dart';
 import 'package:quran_automated/shared/cubit/app_states.dart';
@@ -40,7 +41,7 @@ class UpdateMyAccountScreen extends StatelessWidget {
         return Scaffold(
           appBar: defaultAppBar(
               context: context,
-              title: 'Update My Account Data',
+              title: '${getLang(context, "updateMyAccountTitle")}',
               centerTitle: true),
           body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
@@ -59,10 +60,11 @@ class UpdateMyAccountScreen extends StatelessWidget {
                             keyboard: TextInputType.text,
                             validate: (String? value) {
                               if (value!.isEmpty) {
-                                return 'First Name is required';
-                              }return null;
+                                return '${getLang(context, "firstNameIsRequired")}';
+                              }
+                              return null;
                             },
-                            label: 'First name',
+                            label: '${getLang(context, "firstName")}',
                           ),
                         ),
                         const SizedBox(width: 6),
@@ -70,7 +72,7 @@ class UpdateMyAccountScreen extends StatelessWidget {
                           child: defaultTextFormField(
                             controller: sNameController,
                             keyboard: TextInputType.text,
-                            label: 'Second name',
+                            label: '${getLang(context, "secondName")}',
                           ),
                         ),
                       ],
@@ -82,7 +84,7 @@ class UpdateMyAccountScreen extends StatelessWidget {
                           child: defaultTextFormField(
                             controller: tNameController,
                             keyboard: TextInputType.text,
-                            label: 'Third name',
+                            label: '${getLang(context, "thirdName")}',
                           ),
                         ),
                         const SizedBox(width: 6),
@@ -92,10 +94,11 @@ class UpdateMyAccountScreen extends StatelessWidget {
                             keyboard: TextInputType.text,
                             validate: (String? value) {
                               if (value!.isEmpty) {
-                                return 'Last Name is required';
-                              }return null;
+                                return '${getLang(context, "lastNameIsRequired")}';
+                              }
+                              return null;
                             },
-                            label: 'Last name',
+                            label: '${getLang(context, "lastName")}',
                           ),
                         ),
                       ],
@@ -109,10 +112,11 @@ class UpdateMyAccountScreen extends StatelessWidget {
                             keyboard: TextInputType.number,
                             validate: (String? value) {
                               if (value!.isEmpty) {
-                                return 'identity number is required';
-                              }return null;
+                                return '${getLang(context, "identityNoIsRequired")}';
+                              }
+                              return null;
                             },
-                            label: 'Identity number',
+                            label: '${getLang(context, "identityNo")}',
                           ),
                         ),
                         const SizedBox(width: 6),
@@ -120,7 +124,7 @@ class UpdateMyAccountScreen extends StatelessWidget {
                           child: defaultTextFormField(
                             controller: phoneNoController,
                             keyboard: TextInputType.number,
-                            label: 'Phone number',
+                            label: '${getLang(context, "phoneNo")}',
                           ),
                         ),
                       ],
@@ -129,7 +133,7 @@ class UpdateMyAccountScreen extends StatelessWidget {
                     defaultTextFormField(
                       controller: tNameController,
                       keyboard: TextInputType.text,
-                      label: 'email',
+                      label: '${getLang(context, "email")}',
                     ),
                     const SizedBox(height: 20),
                     Row(
@@ -138,7 +142,7 @@ class UpdateMyAccountScreen extends StatelessWidget {
                           child: defaultTextFormField(
                             controller: genderController,
                             readOnly: true,
-                            label: 'Gender',
+                            label: '${getLang(context, "gender")}',
                           ),
                         ),
                         const SizedBox(width: 6),
@@ -146,14 +150,14 @@ class UpdateMyAccountScreen extends StatelessWidget {
                           child: defaultTextFormField(
                             controller: statusController,
                             readOnly: true,
-                            label: 'Account Status',
+                            label: '${getLang(context, "accountStatus")}',
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 20.0),
                     defaultButton(
-                      text: 'update',
+                      text: '${getLang(context, "updateButton")}',
                       onPressedFunction: () {
                         if (formKey.currentState!.validate()) {
                           print(
@@ -180,7 +184,7 @@ class UpdateMyAccountScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 20.0),
                     defaultButton(
-                      text: 'Change Password',
+                      text: '${getLang(context, "changePasswordButton")}',
                       onPressedFunction: () {
                         navigateTo(context, ChangeMyPasswordScreen());
                       },

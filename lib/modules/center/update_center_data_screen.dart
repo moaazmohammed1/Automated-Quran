@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
@@ -21,8 +22,7 @@ class UpdateCenterScreen extends StatelessWidget {
       builder: (context, state) {
         centerNameController.text = data.name!;
         localRegionController.text = data.localRegion ?? '';
-        // AppCubit.get(context).selectedCenterStatus = data.status!;
-        // AppCubit.get(context).selectedBranchId = data.id!;
+
         if (AppCubit.get(context).allBranchesModel == null) {
           AppCubit.get(context).getAllBranchesData();
           return Scaffold(body: Container());
@@ -30,7 +30,9 @@ class UpdateCenterScreen extends StatelessWidget {
           allBranchesModel = AppCubit.get(context).allBranchesModel;
           return Scaffold(
             appBar: defaultAppBar(
-                context: context, title: 'Update Center', centerTitle: true),
+                context: context,
+                title: '${getLang(context, "updateCenterPage")}',
+                centerTitle: true),
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Padding(
@@ -45,11 +47,11 @@ class UpdateCenterScreen extends StatelessWidget {
                         keyboard: TextInputType.text,
                         validate: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Branch Name is required';
+                            return '${getLang(context, "branchNameRequired")}';
                           }
                           return null;
                         },
-                        label: 'Branch Name',
+                        label: '${getLang(context, "branchName")}',
                       ),
                       const SizedBox(height: 20),
                       Container(
@@ -88,10 +90,10 @@ class UpdateCenterScreen extends StatelessWidget {
                                                           status: 'active');
                                                 },
                                               ),
-                                              const Text(
-                                                'active',
-                                                style:
-                                                    TextStyle(fontSize: 18.0),
+                                              Text(
+                                                '${getLang(context, "active")}',
+                                                style: const TextStyle(
+                                                    fontSize: 18.0),
                                               ),
                                             ],
                                           ),
@@ -108,10 +110,10 @@ class UpdateCenterScreen extends StatelessWidget {
                                                           status: 'pending');
                                                 },
                                               ),
-                                              const Text(
-                                                'pending',
-                                                style:
-                                                    TextStyle(fontSize: 18.0),
+                                              Text(
+                                                '${getLang(context, "pending")}',
+                                                style: const TextStyle(
+                                                    fontSize: 18.0),
                                               ),
                                             ],
                                           ),
@@ -128,10 +130,10 @@ class UpdateCenterScreen extends StatelessWidget {
                                                           status: 'inactive');
                                                 },
                                               ),
-                                              const Text(
-                                                'inactive',
-                                                style:
-                                                    TextStyle(fontSize: 18.0),
+                                              Text(
+                                                '${getLang(context, "inactive")}',
+                                                style: const TextStyle(
+                                                    fontSize: 18.0),
                                               ),
                                             ],
                                           ),
@@ -148,7 +150,8 @@ class UpdateCenterScreen extends StatelessWidget {
                               Text(
                                 AppCubit.get(context).selectedCenterStatus != ''
                                     ? AppCubit.get(context).selectedCenterStatus
-                                    : (data.status ?? 'Center Status'),
+                                    : (data.status ??
+                                        '${getLang(context, "centerStatus")}'),
                                 style: const TextStyle(
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold,
@@ -169,7 +172,7 @@ class UpdateCenterScreen extends StatelessWidget {
                       defaultTextFormField(
                         controller: localRegionController,
                         keyboard: TextInputType.text,
-                        label: 'Local region (option)',
+                        label: '${getLang(context, "localRegion")}',
                       ),
                       const SizedBox(height: 30),
                       Container(
@@ -242,7 +245,7 @@ class UpdateCenterScreen extends StatelessWidget {
                             children: [
                               Text(
                                 AppCubit.get(context).selectedBranchId != null
-                                    ? 'Branch : ${allBranchesModel!.branches![AppCubit.get(context).selectedBranchId!].name}'
+                                    ? '${getLang(context, "branch")} : ${allBranchesModel!.branches![AppCubit.get(context).selectedBranchId!].name}'
                                     : AppCubit.get(context)
                                         .getOneBranchModel!
                                         .branch!
@@ -265,7 +268,7 @@ class UpdateCenterScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 30),
                       defaultButton(
-                        text: 'update',
+                        text: '${getLang(context, "updateButton")}',
                         height: 60.0,
                         fontSizeText: 18.0,
                         onPressedFunction: () {

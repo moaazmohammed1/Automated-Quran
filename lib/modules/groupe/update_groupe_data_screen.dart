@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/all_centers_model.dart';
 import 'package:quran_automated/models/all_groups_model.dart';
 import 'package:quran_automated/models/all_keepers_model.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
@@ -33,7 +34,9 @@ class UpdateGroupeScreen extends StatelessWidget {
           localRegionController.text = data.localRegion ?? '';
           return Scaffold(
             appBar: defaultAppBar(
-                context: context, title: 'Update Groupe', centerTitle: true),
+                context: context,
+                title: '${getLang(context, "updateGropePage")}',
+                centerTitle: true),
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: Padding(
@@ -48,11 +51,11 @@ class UpdateGroupeScreen extends StatelessWidget {
                         keyboard: TextInputType.text,
                         validate: (String? value) {
                           if (value!.isEmpty) {
-                            return 'Groupe Name is required';
+                            return '${getLang(context, "groupNameRequired")}';
                           }
                           return null;
                         },
-                        label: 'Groupe Name',
+                        label: '${getLang(context, "groupName")}',
                       ),
                       const SizedBox(height: 20),
                       Container(
@@ -92,10 +95,10 @@ class UpdateGroupeScreen extends StatelessWidget {
                                                           status: 'active');
                                                 },
                                               ),
-                                              const Text(
-                                                'active',
-                                                style:
-                                                    TextStyle(fontSize: 18.0),
+                                              Text(
+                                                '${getLang(context, "active")}',
+                                                style: const TextStyle(
+                                                    fontSize: 18.0),
                                               ),
                                             ],
                                           ),
@@ -112,10 +115,10 @@ class UpdateGroupeScreen extends StatelessWidget {
                                                           status: 'pending');
                                                 },
                                               ),
-                                              const Text(
-                                                'pending',
-                                                style:
-                                                    TextStyle(fontSize: 18.0),
+                                              Text(
+                                                '${getLang(context, "pending")}',
+                                                style: const TextStyle(
+                                                    fontSize: 18.0),
                                               ),
                                             ],
                                           ),
@@ -132,10 +135,10 @@ class UpdateGroupeScreen extends StatelessWidget {
                                                           status: 'inactive');
                                                 },
                                               ),
-                                              const Text(
-                                                'inactive',
-                                                style:
-                                                    TextStyle(fontSize: 18.0),
+                                              Text(
+                                                '${getLang(context, "inactive")}',
+                                                style: const TextStyle(
+                                                    fontSize: 18.0),
                                               ),
                                             ],
                                           ),
@@ -152,7 +155,8 @@ class UpdateGroupeScreen extends StatelessWidget {
                               Text(
                                 AppCubit.get(context).selectedCenterStatus != ''
                                     ? AppCubit.get(context).selectedCenterStatus
-                                    : (data.status ?? 'Groupe Status'),
+                                    : (data.status ??
+                                        '${getLang(context, "groupeStatus")}'),
                                 style: const TextStyle(
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold,
@@ -173,7 +177,7 @@ class UpdateGroupeScreen extends StatelessWidget {
                       defaultTextFormField(
                         controller: localRegionController,
                         keyboard: TextInputType.text,
-                        label: 'Local region (option)',
+                        label: '${getLang(context, "localRegion")}',
                       ),
                       const SizedBox(height: 20),
                       Container(
@@ -249,7 +253,7 @@ class UpdateGroupeScreen extends StatelessWidget {
                             children: [
                               Text(
                                 AppCubit.get(context).selectedCenterId != null
-                                    ? 'Center is : ${allCentersModel!.centers![AppCubit.get(context).selectedCenterId!].name}'
+                                    ? '${getLang(context, "center")} : ${allCentersModel!.centers![AppCubit.get(context).selectedCenterId!].name}'
                                     : AppCubit.get(context)
                                         .getOneCenterModel!
                                         .center!
@@ -344,7 +348,7 @@ class UpdateGroupeScreen extends StatelessWidget {
                             children: [
                               Text(
                                 AppCubit.get(context).selectedKeeperId != null
-                                    ? 'Keeper is : ${allKeeperModel!.keepers![AppCubit.get(context).selectedKeeperId!].fName} ${allKeeperModel!.keepers![AppCubit.get(context).selectedKeeperId!].lName}'
+                                    ? '${getLang(context, "keeper")} : ${allKeeperModel!.keepers![AppCubit.get(context).selectedKeeperId!].fName} ${allKeeperModel!.keepers![AppCubit.get(context).selectedKeeperId!].lName}'
                                     : '${AppCubit.get(context).getOneKeeperModel!.keeper!.fName!} ${AppCubit.get(context).getOneKeeperModel!.keeper!.lName!}',
                                 style: const TextStyle(
                                   fontSize: 18.0,
@@ -364,7 +368,7 @@ class UpdateGroupeScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 30),
                       defaultButton(
-                        text: 'update',
+                        text: '${getLang(context, "updateButton")}',
                         height: 60.0,
                         fontSizeText: 18.0,
                         onPressedFunction: () {

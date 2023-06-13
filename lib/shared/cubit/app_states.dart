@@ -482,3 +482,7 @@ class GroupeStatusState extends AppStates {}
 class CenterIdState extends AppStates {}
 
 class KeeperIdState extends AppStates {}
+
+//
+
+class ChangeLanguageState extends AppStates {}

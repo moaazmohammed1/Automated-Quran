@@ -5,10 +5,12 @@ import 'package:quran_automated/modules/manage_account/update_my_account_screen.
 import 'package:quran_automated/modules/student/attendance_scree.dart';
 import 'package:quran_automated/modules/student/memorization_screen.dart';
 import 'package:quran_automated/modules/student/my_test_mark_screen.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/cubit/app_cubit.dart';
 import 'package:quran_automated/shared/network/end_point.dart';
 import 'package:quran_automated/shared/style/style.dart';
+import '../../shared/components/drawer_component.dart';
 import '../../shared/cubit/app_states.dart';
 import '../user/follow_links_screen.dart';
 import '../user/registration_links_screen.dart';
@@ -25,8 +27,23 @@ class HomeScreen extends StatelessWidget {
       builder: (context, state) {
         if (AppCubit.get(context).myData == null) {
           AppCubit.get(context).getMyData();
-          return const Scaffold(
-            body: Center(
+          return Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.white),
+                ),
+                onPressed: () {
+                  signOut(context);
+                },
+                child: Text(
+                  '${getLang(context, "out")}',
+                  style: const TextStyle(color: Colors.red),
+                ),
+              ),
+            ),
+            body: const Center(
               child: CircularProgressIndicator(
                 color: defaultColor,
               ),
@@ -36,7 +53,7 @@ class HomeScreen extends StatelessWidget {
           data = AppCubit.get(context).myData;
           return Scaffold(
             appBar: AppBar(
-              title: const Text('My profile'),
+              title: Text('${getLang(context, "myProfileTitle")}'),
               centerTitle: true,
             ),
             body: SingleChildScrollView(
@@ -57,17 +74,17 @@ class HomeScreen extends StatelessWidget {
                           const SizedBox(height: 30.0),
                           Container(
                             width: double.infinity,
-                            padding:
-                                const EdgeInsets.only(left: 30.0, bottom: 10.0),
+                            padding: const EdgeInsets.only(
+                                left: 25.0, right: 25.0, bottom: 10.0),
                             child: Text(
-                              'User Data:',
+                              '${getLang(context, "userData")}',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText1!
                                   .copyWith(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black38,
-                                    fontSize: 20.0,
+                                    fontSize: 17.0,
                                   ),
                             ),
                           ),
@@ -81,33 +98,35 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 item(
                                   context,
-                                  nameFixed: 'Name: ',
+                                  nameFixed: '${getLang(context, "name")}',
                                   nameDynamic:
                                       '${data!.fName} ${data!.sName ?? ''} ${data!.tName ?? ''} ${data!.lName}',
                                 ),
                                 item(
                                   context,
-                                  nameFixed: '$position ID: ',
+                                  nameFixed:
+                                      '${getLang(context, "identityNo")}',
                                   nameDynamic: data!.identityNo,
                                 ),
                                 item(
                                   context,
-                                  nameFixed: 'Phone Number: ',
+                                  nameFixed: '${getLang(context, "phoneNo")}',
                                   nameDynamic: data!.phone ?? '----',
                                 ),
                                 item(
                                   context,
-                                  nameFixed: 'Email: ',
+                                  nameFixed: '${getLang(context, "email")}',
                                   nameDynamic: data!.email ?? '----',
                                 ),
                                 item(
                                   context,
-                                  nameFixed: 'Position: ',
+                                  nameFixed: '${getLang(context, "position")}',
                                   nameDynamic: data!.position,
                                 ),
                                 item(
                                   context,
-                                  nameFixed: 'Account status: ',
+                                  nameFixed:
+                                      '${getLang(context, "accountStatus")}',
                                   nameDynamic: data!.status,
                                 ),
                                 const SizedBox(height: 35.0),
@@ -126,7 +145,8 @@ class HomeScreen extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: defaultButton(
-                                            text: 'Follow page',
+                                            text:
+                                                '${getLang(context, "followPageButton")}',
                                             height: 50.0,
                                             onPressedFunction: () {
                                               navigateTo(
@@ -139,7 +159,8 @@ class HomeScreen extends StatelessWidget {
                                         const SizedBox(width: 15.0),
                                         Expanded(
                                           child: defaultButton(
-                                            text: 'register page',
+                                            text:
+                                                '${getLang(context, "registerPageButton")}',
                                             height: 50.0,
                                             onPressedFunction: () {
                                               navigateTo(context,
@@ -154,7 +175,8 @@ class HomeScreen extends StatelessWidget {
                                     children: [
                                       Expanded(
                                         child: defaultButton(
-                                          text: 'update my Data',
+                                          text:
+                                              '${getLang(context, "updateMyAccountButton")}',
                                           height: 50.0,
                                           onPressedFunction: () {
                                             navigateTo(
@@ -167,7 +189,8 @@ class HomeScreen extends StatelessWidget {
                                       const SizedBox(width: 15.0),
                                       Expanded(
                                         child: defaultButton(
-                                          text: 'Delete Account',
+                                          text:
+                                              '${getLang(context, "deleteMyAccountButton")}',
                                           height: 50.0,
                                           color: redColor,
                                           onPressedFunction: () {
@@ -230,7 +253,7 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-            drawer: defaultDrawer(context),
+            drawer: DrawerComponent(),
           );
         }
       },

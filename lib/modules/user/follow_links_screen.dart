@@ -12,6 +12,7 @@ import 'package:quran_automated/modules/manage_account/home_screen.dart';
 import 'package:quran_automated/modules/student/all_student_screen.dart';
 import 'package:quran_automated/modules/student/student_attendance_screen.dart';
 import 'package:quran_automated/modules/user/registration_links_screen.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
@@ -37,7 +38,7 @@ class FollowScreen extends StatelessWidget {
                 },
                 icon: const Icon(Icons.arrow_back)),
             context: context,
-            title: 'Follow Screen',
+            title: '${getLang(context, "followPageButton")}',
             centerTitle: true,
           ),
           body: Container(
@@ -56,7 +57,7 @@ class FollowScreen extends StatelessWidget {
                     //
                     if (position == 'manager' || position == 'admin')
                       textButtonApp(
-                        text: 'Admins',
+                        text: '${getLang(context, "admins")}',
                         function: () {
                           navigateTo(
                             context,
@@ -71,7 +72,7 @@ class FollowScreen extends StatelessWidget {
                     // position == 'supervisor'
                     )
                       textButtonApp(
-                        text: 'Supervisors',
+                        text: '${getLang(context, "dss")}',
                         function: () {
                           navigateTo(
                             context,
@@ -85,7 +86,7 @@ class FollowScreen extends StatelessWidget {
                         position == 'admin' ||
                         position == 'supervisor')
                       textButtonApp(
-                        text: 'Keeper',
+                        text: '${getLang(context, "keepers")}',
                         function: () {
                           navigateTo(
                             context,
@@ -99,7 +100,7 @@ class FollowScreen extends StatelessWidget {
                         position == 'admin' ||
                         position == 'supervisor')
                       textButtonApp(
-                        text: 'Students',
+                        text: '${getLang(context, "students")}',
                         function: () {
                           navigateTo(
                             context,
@@ -110,7 +111,7 @@ class FollowScreen extends StatelessWidget {
 
                     if (position == 'keeper')
                       textButtonApp(
-                        text: 'Students',
+                        text: '${getLang(context, "students")}',
                         function: () {
                           navigateTo(
                             context,
@@ -120,7 +121,7 @@ class FollowScreen extends StatelessWidget {
                       ),
                     if (position == 'keeper')
                       textButtonApp(
-                        text: 'Store Student Absence',
+                        text: '${getLang(context, "storeStudentAbsence")}',
                         function: () {
                           navigateTo(
                             context,
@@ -130,22 +131,24 @@ class FollowScreen extends StatelessWidget {
                       ),
                     if (position == 'keeper')
                       textButtonApp(
-                        text: 'Report',
+                        text: '${getLang(context, "report")}',
                         function: () {
-                          AppCubit.get(context).getReport(context);
+                          // AppCubit.get(context).getReport(context);
+
+                          AppCubit.get(context).studentInReport = null;
                           navigateTo(context, ReportScreen());
                         },
                       ),
                     if (position == 'keeper')
                       textButtonApp(
-                        text: 'Tests Represented',
+                        text: '${getLang(context, "testRepresented")}',
                         function: () {
                           navigateTo(context, AllTestsScreen());
                         },
                       ),
                     if (position == 'keeper')
                       textButtonApp(
-                        text: 'All Reports',
+                        text: '${getLang(context, "allReports")}',
                         function: () {
                           navigateTo(context, AllReportsKeeperScreen());
                         },
@@ -153,7 +156,7 @@ class FollowScreen extends StatelessWidget {
                     //
                     if (position == 'admin' || position == 'manager')
                       textButtonApp(
-                        text: 'Branch',
+                        text: '${getLang(context, "branches")}',
                         function: () {
                           navigateTo(
                             context,
@@ -167,7 +170,7 @@ class FollowScreen extends StatelessWidget {
                         position == 'manager' ||
                         position == 'supervisor')
                       textButtonApp(
-                        text: 'Center',
+                        text: '${getLang(context, "centers")}',
                         function: () {
                           navigateTo(
                             context,
@@ -181,7 +184,7 @@ class FollowScreen extends StatelessWidget {
                         position == 'manager' ||
                         position == 'supervisor')
                       textButtonApp(
-                        text: 'Groupe',
+                        text: '${getLang(context, "groups")}',
                         function: () {
                           navigateTo(
                             context,
@@ -191,7 +194,7 @@ class FollowScreen extends StatelessWidget {
                       ),
                     if (position == 'supervisor')
                       textButtonApp(
-                        text: 'All Reports',
+                        text: '${getLang(context, "allReports")}',
                         function: () {
                           navigateTo(
                             context,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import 'package:quran_automated/shared/style/style.dart';
 
 import '../../models/data_model.dart';
@@ -9,7 +11,7 @@ import '../../shared/cubit/app_states.dart';
 import 'update_ds_data_screen.dart';
 
 class DSProfileScreen extends StatelessWidget {
-  Data data;
+  Data? data;
   DSProfileScreen({super.key, required this.data});
 
   @override
@@ -46,10 +48,10 @@ class DSProfileScreen extends StatelessWidget {
                       const SizedBox(height: 30.0),
                       Container(
                         width: double.infinity,
-                        padding:
-                            const EdgeInsets.only(left: 30.0, bottom: 10.0),
+                        padding: const EdgeInsets.only(
+                            right: 30.0, left: 30.0, bottom: 10.0),
                         child: Text(
-                          'User Data.',
+                          '${getLang(context, "userData")}',
                           style: Theme.of(context)
                               .textTheme
                               .bodyText1!
@@ -67,34 +69,34 @@ class DSProfileScreen extends StatelessWidget {
                           children: [
                             item(
                               context,
-                              nameFixed: 'Name: ',
+                              nameFixed: '${getLang(context, "name")}',
                               nameDynamic:
-                                  '${data.fName} ${data.sName ?? ''} ${data.tName ?? ''} ${data.lName}',
+                                  '${data!.fName} ${data!.sName ?? ''} ${data!.tName ?? ''} ${data!.lName}',
                             ),
                             item(
                               context,
-                              nameFixed: 'Manager ID: ',
-                              nameDynamic: data.identityNo,
+                              nameFixed: '${getLang(context, "identityNo")}',
+                              nameDynamic: data!.identityNo,
                             ),
                             item(
                               context,
-                              nameFixed: 'Phone Number: ',
-                              nameDynamic: data.phone,
+                              nameFixed: '${getLang(context, "phoneNo")}',
+                              nameDynamic: data!.phone ?? '----',
                             ),
                             item(
                               context,
-                              nameFixed: 'Email: ',
-                              nameDynamic: data.email,
+                              nameFixed: '${getLang(context, "email")}',
+                              nameDynamic: data!.email ?? '----',
                             ),
                             item(
                               context,
-                              nameFixed: 'Position: ',
-                              nameDynamic: data.position,
+                              nameFixed: '${getLang(context, "position")}',
+                              nameDynamic: data!.position,
                             ),
                             item(
                               context,
-                              nameFixed: 'material status: ',
-                              nameDynamic: data.status,
+                              nameFixed: '${getLang(context, "accountStatus")}',
+                              nameDynamic: data!.status,
                             ),
                             const SizedBox(height: 35.0),
                           ],
@@ -110,13 +112,14 @@ class DSProfileScreen extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: defaultButton(
-                                    text: 'Update data',
+                                    text:
+                                        '${getLang(context, "updateUserButton")}',
                                     height: 60.0,
                                     onPressedFunction: () {
                                       navigateTo(
                                           context,
                                           UpdateDirectSupervisorScreen(
-                                            data: data,
+                                            data: data!,
                                           ));
                                     },
                                   ),
@@ -124,7 +127,8 @@ class DSProfileScreen extends StatelessWidget {
                                 const SizedBox(width: 15.0),
                                 Expanded(
                                   child: defaultButton(
-                                    text: 'Delete Admin',
+                                    text:
+                                        '${getLang(context, "deleteUserButton")}',
                                     color: redColor,
                                     height: 60.0,
                                     onPressedFunction: () {
@@ -134,7 +138,7 @@ class DSProfileScreen extends StatelessWidget {
                                           AppCubit.get(context)
                                               .deleteDirectSupervisor(
                                             context,
-                                            id: data.id!,
+                                            id: data!.id!,
                                           );
                                         },
                                       );
@@ -152,7 +156,7 @@ class DSProfileScreen extends StatelessWidget {
               ),
             ],
           ),
-          drawer: defaultDrawer(context),
+          drawer: DrawerComponent(),
         );
         // }
       },

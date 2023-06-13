@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:quran_automated/modules/all.dart';
+import 'package:quran_automated/modules/keeper/keeper_list.dart';
 import 'package:quran_automated/modules/manage_account/home_screen.dart';
 import 'package:quran_automated/modules/user/login/login_screen.dart';
 import 'package:quran_automated/modules/user/splash_screen.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/cubit/app_cubit.dart';
 import 'package:quran_automated/shared/cubit/app_states.dart';
@@ -21,6 +26,7 @@ void main() async {
   token = CacheHelper.getData(key: 'token');
   position = CacheHelper.getData(key: 'position');
   bool? onBoarding = CacheHelper.getData(key: 'onBoarding');
+
   Widget startWidget;
 
   if (onBoarding != null) {
@@ -48,6 +54,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => AppCubit()),
+        ChangeNotifierProvider(create: (context) => ChangeLang()),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
@@ -56,13 +63,48 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Automated Quran Memorization System',
             theme: lightMode,
-            // home: Demo(),
             // home: AllPages(),
             // home: TestScreen(),
+            // home: const Directionality(
+            //   textDirection: TextDirection.rtl,
+            //   child: MyHomePage(),
+            // ),
             home: startWidget,
+            localizationsDelegates: const [
+              AppLocale.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale("ar", ""),
+              Locale("en", ""),
+            ],
+            locale: const Locale("ar", ""),
+
+            // /* Translation by phone language */
+            localeResolutionCallback: (currentLang, supportLang) {
+              //   if (currentLang != null) {
+              //   for (Locale locale in supportLang) {
+              //     if (locale.languageCode == currentLang.languageCode) {
+              //       CacheHelper.sharedPreferences!
+              //           .setString("lang", currentLang.languageCode);
+              //       return currentLang;
+              //     }
+              //   }
+              //   }
+
+              CacheHelper.sharedPreferences!.setString("lang", lang!);
+
+              return Locale(lang!, "");
+
+              // return supportLang.first;
+            },
           );
         },
       ),
     );
   }
 }
+
+class ChangeLang with ChangeNotifier {}

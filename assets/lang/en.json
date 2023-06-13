@@ -1,0 +1,213 @@
+{
+    "myProfileTitle" : "My Profile",
+    "userData" : "User Data.",
+    "name" : "Name:",
+    "identityNo" : "Identity Number:",
+    "phoneNo" : "Phone Number:",
+    "email" : "Email:",
+    "position" : "Position:",
+    "gender" : "Gender:",
+    "accountStatus" : "Account Status:",
+    "registerPageButton" : "Register Page",
+    "followPageButton" : "Follow Page",
+    "updateMyAccountButton" : "Update Account",
+    "deleteMyAccountButton" :"Delete Account",
+
+    "updateMyAccountTitle" :"Update My Account Data",
+    "firstName" :"First Name",
+    "secondName" :"second Name",
+    "thirdName" :"Third Name",
+    "lastName" :"Last Name",
+    "updateButton" :"Update",
+    "changePasswordButton" :"Change Password",
+    "firstNameIsRequired" :"First Name is required",
+    "lastNameIsRequired" :"Last Name is required",
+    "identityNoIsRequired" :"Identity Number is required",
+
+    "currentPassword" :"Current Password", 
+    "newPassword" :"New Password",
+    "confirmPassword" : "Confirm Password",
+    "passwordIsTooShort" : "Password Is Too Short",
+    "saveButton" : "Save",
+    
+    "addAdmin" :"Add Admin",
+    "addDS" :"Add Direct Supervisor",
+    "addKeeper" :"Add Keeper",
+    "addStudent" :"Add Student",
+    "passwordIsRequired" :"Password Is Required",
+    "password" :"Password",
+    "create":"Create",
+    
+    "admins":"Admins",
+    "dss":"Direct Supervisors",
+    "keepers":"Keepers",
+    "students":"Students",
+    "branches":"Branches",
+    "centers":"Centers",
+    "groups":"Groups",
+    "storeStudentAbsence":"Store Student Absence",
+    "report":"Report",
+    "testRepresented":"Test Represented",
+    "allReports":"All Reports",
+    
+    "skip":"Skip",
+    "title1":"Title1 title1",
+    "title2":"Title2 title2",
+    "title3":"Title3 title3",
+    "body1":"Body1 body1",
+    "body2":"Body2 body2",
+    "body3":"Body3 body3",
+
+    "loginSuccess":"Login Success",
+    "loginError":"Login Error",
+    "loginTitle":"Dar Al Quran Al Kareem",
+    "login":"Login",
+    "welcome":"Welcome Thatcher please Enter Yor Data.",
+
+    "msgConfirmDelete":"you are sure from delete yor account ?",
+    "yes":"Yes",
+    "no":"No",
+
+    "allStudents":"all Students",
+    "studentsNotFounds":"Students Not Founds",
+
+    "allStudentsInGroup":"All Students In Group",
+
+    "attendanceAbsence":"Attendance And Absence",
+    "dayIs":"Day Is",
+    "dateIs":"Date Is",
+    "attendance":"Attendance",
+    "absence":"Absence",
+
+    "studentMemorization":"Student Memorization",
+    "memorization":"Memorization",
+    "theKeep":"The Keep",
+    "surah":"Surah",
+    "ayah":"Ayah",
+    "fromAyah":"From Ayah",
+    "toAyah":"To Ayah",
+    "faultsNumber":"Faults Number",
+
+    "myMark":"My Mark",
+    "markNotFound":"Mark Not Found",
+    "testInfo":"Test Info.",
+    "fromJuz":"From Juz:",
+    "toJuz":"To Juz:",
+    "typeTest":"Type Test: ",
+    "testMark":"Test Mark: ",
+    "juz":"Juz: ",
+    "student":"Student: ",
+
+    "storeAttendanceAbsence":"Store Attendance And Absence",
+    "clickToAbsence":"Click To Absence",
+    "clickToAttendance":"Click To Attendance",
+
+    "studentProfile":"Student Profile",
+    "deleteUserButton" :"Delete",
+    "updateUserButton" : "Update",
+
+    "updateStudentTitle" :"Update Student Title",
+
+    "allKeepers":"All Keepers",
+    "keepersNotFounds":"Keepers Not Founds",
+
+    "reportsNotFound":"Reports Not Found",
+    "reportId":"Report Id: ",
+    "reportMonth":"Report Month: ",
+    "status":"status: ",
+
+    "allTest":"All Test",
+    "testsNotFounds":"Tests Not Founds",
+
+    "testQuestions":"Test Questions",
+    "enterStudentMark":"Enter Student Mark",
+    "RequiredStudentMark":"Required Student Mark",
+    "submitMark":"Submit Student Mark",
+
+    "updateKeeper":"Update Keeper",
+
+    "registerNewSave":"Register New Save",
+    "studentName":"Student Name: ",
+    "select":"select",
+
+    "monthlyMemorization":"Monthly Memorization",
+    "absenceDays":"Absence Days",
+    "from":"from",
+    "to":"to",
+    "studentNameReport":"Student Name Report",
+
+    "generateQuestions":"Generate Questions",
+    "placeEnterYourFromJuz":"Place Enter Your From Juz",
+    "fromJuzTest":"From Juz Test",
+    "placeEnterYourToJuz":"Place Enter Your To Juz",
+    "toJuzTest":"To Juz Test",
+    "placeEnterYourQuestionNumber":"Place Enter Your Question Number",
+    "questionNumber":"Question Number",
+    "single":"single",
+    "group":"group",
+    "typeQuestion":"Type Question",
+
+    "addGroup":"Add Group",
+    "groupNameRequired":"Group Name Required",
+    "groupName":"Group Name",
+    "active":"active",
+    "pending":"pending",
+    "inactive":"inactive",
+    "groupeStatus":"Groupe Status",
+    "localRegion":"Local Region",
+    "center":"Center",
+    "keeper":"Keeper",
+    
+    "allGroups":"allGroups",
+    "groupsNotFound":"groupsNotFound",
+
+    "groupProfile":"groupProfile",
+    "updateGropePage":"updateGropePage",
+    "deleteGrope":"deleteGrope",
+
+    "allDs":"All Direct Supervisors",
+    "dsNotFound":"Direct Supervisors Not Found",
+
+    "reportInfo":"Report Info",
+
+    "updateDs":"Update Direct Supervisor",
+
+    "updateAdmin":"Update Admin",
+
+    "allAdmins":"All Admins",
+    "adminsNotFound":"Admins Not Found",
+
+    "addCenter":"Add Center",
+    "centerNameRequired":"Center Name Required",
+    "centerName":"Center Name",
+    "centerStatus":"Center Status",
+    "branch":"Branch",
+    
+    "allCenters":"All Centers",
+    "centersNotFound":"Centers Not Found",
+    
+    "centerProfile":"Center Profile",
+    "updateCenterPage":"Update Center Page",
+    "deleteCenter":"Delete Center",
+
+    "branchNameRequired":"Branch Name Required",
+    "branchName":"Branch Name",
+
+    "addBranch":"Add Branch",
+    
+    "branchStatus":"Branch Status",
+    
+    "allBranches":"All Branches",
+    "branchesNotFound":"Branches Not Found",
+    
+    "branchProfile":"Branch Profile",
+    "updateBranchPage":"Update Branch Page",
+    "deleteBranch":"Delete Branch",
+
+    "arabicLanguage":"Arabic Language",
+    "englishLanguage":"English Language",
+
+    "logout":"Log Out",
+
+    "out":"exit"
+}

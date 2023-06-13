@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../models/all_branches_model.dart';
 import '../../shared/cubit/app_cubit.dart';
@@ -18,7 +20,7 @@ class BranchProfileScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Branch profile'),
+            title: Text('${getLang(context, "branchProfile")}'),
             centerTitle: true,
             actions: [
               IconButton(
@@ -48,7 +50,7 @@ class BranchProfileScreen extends StatelessWidget {
                         padding:
                             const EdgeInsets.only(left: 30.0, bottom: 10.0),
                         child: Text(
-                          'User Data.',
+                          '${getLang(context, "userData")} ',
                           style: Theme.of(context)
                               .textTheme
                               .bodyText1!
@@ -66,17 +68,18 @@ class BranchProfileScreen extends StatelessWidget {
                           children: [
                             item(
                               context,
-                              nameFixed: 'Name: ',
+                              nameFixed: '${getLang(context, "name")} ',
                               nameDynamic: '${data.name}',
                             ),
                             item(
                               context,
-                              nameFixed: 'Status: ',
+                              nameFixed:
+                                  '${getLang(context, "branchStatus")} : ',
                               nameDynamic: data.status,
                             ),
                             item(
                               context,
-                              nameFixed: 'Local Region: ',
+                              nameFixed: '${getLang(context, "localRegion")}: ',
                               nameDynamic: data.localRegion ?? '',
                             ),
                             const SizedBox(height: 35.0),
@@ -93,7 +96,7 @@ class BranchProfileScreen extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: defaultButton(
-                                    text: 'Update data',
+                                    text: '${getLang(context, "updateButton")}',
                                     height: 60.0,
                                     onPressedFunction: () {
                                       navigateTo(
@@ -108,7 +111,7 @@ class BranchProfileScreen extends StatelessWidget {
                                 const SizedBox(width: 15.0),
                                 Expanded(
                                   child: defaultButton(
-                                    text: 'Delete Groupe',
+                                    text: '${getLang(context, "deleteBranch")}',
                                     color: redColor,
                                     height: 60.0,
                                     onPressedFunction: () {
@@ -135,7 +138,7 @@ class BranchProfileScreen extends StatelessWidget {
               ),
             ],
           ),
-          drawer: defaultDrawer(context),
+          drawer: DrawerComponent(),
         );
       },
     );

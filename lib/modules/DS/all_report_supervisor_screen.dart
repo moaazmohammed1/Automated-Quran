@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:quran_automated/models/all_reports_keeper_model.dart';
 import 'package:quran_automated/models/all_reports_supervisor_model.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_states.dart';
@@ -21,7 +23,7 @@ class AllReportsSupervisorScreen extends StatelessWidget {
           AppCubit.get(context).getAllReportSupervisor();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('All Reports'),
+              title: Text('${getLang(context, "allReports")}'),
               centerTitle: true,
             ),
             body: const Center(
@@ -36,7 +38,7 @@ class AllReportsSupervisorScreen extends StatelessWidget {
           if (allReportSupervisorModel!.messages!.isNotEmpty) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Reports'),
+                title: Text('${getLang(context, "allReports")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -59,12 +61,12 @@ class AllReportsSupervisorScreen extends StatelessWidget {
                   itemCount: allReportSupervisorModel!.messages!.length,
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Reports'),
+                title: Text('${getLang(context, "allReports")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -78,16 +80,16 @@ class AllReportsSupervisorScreen extends StatelessWidget {
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.person_off_sharp,
                       color: Colors.grey,
                       size: 150.0,
                     ),
-                    SizedBox(height: 50.0),
+                    const SizedBox(height: 50.0),
                     Text(
-                      'Report\'s Not Found',
-                      style: TextStyle(
+                      '${getLang(context, "reportsNotFound")}',
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                         fontSize: 30.0,
@@ -96,7 +98,7 @@ class AllReportsSupervisorScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           }
         }
@@ -115,7 +117,7 @@ class AllReportsSupervisorScreen extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'Report Info. ',
+                  '${getLang(context, "reportInfo")}. ',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Colors.grey[500],
@@ -131,7 +133,7 @@ class AllReportsSupervisorScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '${model.position} Name: ',
+                  '${getLang(context, "name")}: ',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: defaultColor,
@@ -156,7 +158,7 @@ class AllReportsSupervisorScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Identity Number: ',
+                  '${getLang(context, "identityNo")} ',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: defaultColor,
@@ -181,7 +183,7 @@ class AllReportsSupervisorScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Date : ',
+                  '${getLang(context, "dateIs")} : ',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: defaultColor,
@@ -208,7 +210,7 @@ class AllReportsSupervisorScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Position : ',
+                  '${getLang(context, "position")} : ',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: defaultColor,

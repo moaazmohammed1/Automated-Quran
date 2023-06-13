@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/get_mark_model.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_states.dart';
@@ -19,7 +21,7 @@ class MyTestMarkScreen extends StatelessWidget {
           AppCubit.get(context).getMyTest();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('My Mark'),
+              title: Text('${getLang(context, "myMark")}'),
               centerTitle: true,
             ),
             body: const Center(
@@ -33,7 +35,7 @@ class MyTestMarkScreen extends StatelessWidget {
           if (getMyTestsModel!.tests!.isNotEmpty) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('My Mark'),
+                title: Text('${getLang(context, "myMark")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -56,12 +58,12 @@ class MyTestMarkScreen extends StatelessWidget {
                   itemCount: getMyTestsModel!.tests!.length,
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer:   DrawerComponent(),
             );
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('My Mark'),
+                title: Text('${getLang(context, "myMark")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -75,16 +77,16 @@ class MyTestMarkScreen extends StatelessWidget {
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.person_off_sharp,
                       color: Colors.grey,
                       size: 150.0,
                     ),
-                    SizedBox(height: 50.0),
+                    const SizedBox(height: 50.0),
                     Text(
-                      'Mark\'s Not Found',
-                      style: TextStyle(
+                      '${getLang(context, "markNotFound")}',
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                         fontSize: 30.0,
@@ -93,7 +95,7 @@ class MyTestMarkScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer:   DrawerComponent(),
             );
           }
         }
@@ -112,7 +114,7 @@ class MyTestMarkScreen extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'Test Info. ',
+                  '${getLang(context, "testInfo")}',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Colors.grey[500],
@@ -128,7 +130,7 @@ class MyTestMarkScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'From Juz ',
+                  '${getLang(context, "fromJuz")}',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: defaultColor,
@@ -152,7 +154,7 @@ class MyTestMarkScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  ' To Juz ',
+                  '${getLang(context, "toJuz")}',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: defaultColor,
@@ -176,7 +178,7 @@ class MyTestMarkScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Type Test: ',
+                  '${getLang(context, "typeTest")}',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                       fontWeight: FontWeight.bold, color: defaultColor),
                   maxLines: 1,
@@ -196,7 +198,7 @@ class MyTestMarkScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Test Mark: ',
+                  '${getLang(context, "testMark")}',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                       fontWeight: FontWeight.bold, color: defaultColor),
                   maxLines: 1,

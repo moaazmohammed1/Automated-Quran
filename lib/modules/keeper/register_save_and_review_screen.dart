@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../models/data_model.dart';
-
+import '../../shared/components/drawer_component.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_states.dart';
 
@@ -18,7 +19,7 @@ class RegisterSaveAndReviewScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Register New Save'),
+            title: Text('${getLang(context, "registerNewSave")}'),
             actions: [
               IconButton(
                 onPressed: () {
@@ -28,7 +29,7 @@ class RegisterSaveAndReviewScreen extends StatelessWidget {
               )
             ],
           ),
-          drawer: defaultDrawer(context),
+          drawer: DrawerComponent(),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: SingleChildScrollView(
@@ -44,7 +45,7 @@ class RegisterSaveAndReviewScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Student Name:',
+                          '${getLang(context, "studentName")}',
                           style:
                               Theme.of(context).textTheme.bodyText1!.copyWith(
                                     fontWeight: FontWeight.bold,
@@ -125,7 +126,7 @@ class RegisterSaveAndReviewScreen extends StatelessWidget {
                                         ),
                                         const SizedBox(height: 10.0),
                                         defaultButton(
-                                          text: 'select',
+                                          text: '${getLang(context, "select")}',
                                           onPressedFunction: () {
                                             AppCubit.get(context)
                                                 .getSpecificJuzInformation(
@@ -152,8 +153,8 @@ class RegisterSaveAndReviewScreen extends StatelessWidget {
                         children: [
                           Text(
                             AppCubit.get(context).selectedJuz != ''
-                                ? 'Juz : ${AppCubit.get(context).selectedJuz ?? '--'}'
-                                : 'Al-Juz',
+                                ? '${getLang(context, "juz")} : ${AppCubit.get(context).selectedJuz ?? '--'}'
+                                : '${getLang(context, "juz")}',
                             style: const TextStyle(
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
@@ -251,8 +252,8 @@ class RegisterSaveAndReviewScreen extends StatelessWidget {
                         children: [
                           Text(
                             AppCubit.get(context).selectedSura != ''
-                                ? 'Surah : ${AppCubit.get(context).selectedSura ?? '--'}'
-                                : 'Al-Surah',
+                                ? '${getLang(context, "surah")} : ${AppCubit.get(context).selectedSura ?? '--'}'
+                                : '${getLang(context, "surah")}',
                             style: const TextStyle(
                               fontSize: 18.0,
                               fontWeight: FontWeight.bold,
@@ -345,8 +346,8 @@ class RegisterSaveAndReviewScreen extends StatelessWidget {
                                               .selectedFromAyah
                                               .toString() !=
                                           ''
-                                      ? 'From Aya : ${AppCubit.get(context).selectedFromAyah ?? '--'}'
-                                      : 'Al-Aya',
+                                      ? '${getLang(context, "fromAyah")} : ${AppCubit.get(context).selectedFromAyah ?? '--'}'
+                                      : '${getLang(context, "ayah")}',
                                   style: const TextStyle(
                                     fontSize: 17.0,
                                     fontWeight: FontWeight.bold,
@@ -439,8 +440,8 @@ class RegisterSaveAndReviewScreen extends StatelessWidget {
                                               .selectedToAyah
                                               .toString() !=
                                           ''
-                                      ? 'To Aya : ${AppCubit.get(context).selectedToAyah ?? '--'}'
-                                      : 'Al-Aya',
+                                      ? '${getLang(context, "toAyah")} : ${AppCubit.get(context).selectedToAyah ?? '--'}'
+                                      : '${getLang(context, "ayah")}',
                                   style: const TextStyle(
                                     fontSize: 17.0,
                                     fontWeight: FontWeight.bold,
@@ -462,7 +463,7 @@ class RegisterSaveAndReviewScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30.0),
                   defaultButton(
-                      text: 'save',
+                      text: '${getLang(context, "saveButton")}',
                       onPressedFunction: () {
                         AppCubit.get(context).registerNewKeep(
                           context,

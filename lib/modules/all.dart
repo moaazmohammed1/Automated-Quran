@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'admin/all_admin_screen.dart';
-import 'GCS/add_gcs.dart';
 import 'student/memorization_screen.dart';
 import 'user/login/login_screen.dart';
 import 'user/on_boarding_screen.dart';
@@ -149,12 +148,6 @@ class AllPages extends StatelessWidget {
                   // navigateTo(context, const UserListScreen());
                 },
                 child: const Text('UserListScreen'),
-              ),
-              TextButton(
-                onPressed: () {
-                  navigateTo(context, const AddGCSScreen());
-                },
-                child: const Text('AddGCSScreen'),
               ),
             ],
           ),

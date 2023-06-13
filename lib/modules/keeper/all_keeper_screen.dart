@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/all_keepers_model.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../models/data_model.dart';
 import '../../shared/cubit/app_cubit.dart';
@@ -22,7 +24,7 @@ class FollowAllKeepersScreen extends StatelessWidget {
           AppCubit.get(context).getAllKeepersData();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('All Keeper\'s'),
+              title: Text('${getLang(context, "allKeepers")}'),
               centerTitle: true,
             ),
             body: const Center(
@@ -36,7 +38,7 @@ class FollowAllKeepersScreen extends StatelessWidget {
           if (allKeeperModel!.keepers!.isNotEmpty) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Keeper\'s'),
+                title: Text('${getLang(context, "allKeepers")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -63,12 +65,12 @@ class FollowAllKeepersScreen extends StatelessWidget {
                   itemCount: allKeeperModel!.keepers!.length,
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Keeper\'s'),
+                title: Text('${getLang(context, "allKeepers")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -82,16 +84,16 @@ class FollowAllKeepersScreen extends StatelessWidget {
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.person_off_sharp,
                       color: Colors.grey,
                       size: 150.0,
                     ),
-                    SizedBox(height: 50.0),
+                    const SizedBox(height: 50.0),
                     Text(
-                      'Keeper\'s Not Found',
-                      style: TextStyle(
+                      '${getLang(context, "keepersNotFounds")}',
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                         fontSize: 30.0,
@@ -100,7 +102,7 @@ class FollowAllKeepersScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           }
         }

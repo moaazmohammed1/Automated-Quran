@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/all_groups_model.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_states.dart';
@@ -21,7 +23,7 @@ class FollowAllGroupsScreen extends StatelessWidget {
           AppCubit.get(context).getAllGroupsData();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('All Group\'s'),
+              title: Text('${getLang(context, "allGroups")}'),
               centerTitle: true,
             ),
             body: const Center(
@@ -35,7 +37,7 @@ class FollowAllGroupsScreen extends StatelessWidget {
           if (allGroupsModel!.groups!.isNotEmpty) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Group\'es'),
+                title: Text('${getLang(context, "allGroups")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -63,12 +65,12 @@ class FollowAllGroupsScreen extends StatelessWidget {
                   itemCount: allGroupsModel!.groups!.length,
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Group\'s'),
+                title: Text('${getLang(context, "allGroups")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -82,16 +84,16 @@ class FollowAllGroupsScreen extends StatelessWidget {
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.person_off_sharp,
                       color: Colors.grey,
                       size: 150.0,
                     ),
-                    SizedBox(height: 50.0),
+                    const SizedBox(height: 50.0),
                     Text(
-                      'Groups Not Found',
-                      style: TextStyle(
+                      '${getLang(context, "groupsNotFound")}',
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                         fontSize: 30.0,
@@ -100,7 +102,7 @@ class FollowAllGroupsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           }
         }

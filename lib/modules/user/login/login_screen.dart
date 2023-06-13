@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/modules/user/login/cubit/login_cubit.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import 'package:quran_automated/shared/cubit/app_cubit.dart';
 import 'package:quran_automated/shared/network/local/cache_helper.dart';
 import 'package:quran_automated/shared/style/style.dart';
@@ -48,12 +50,12 @@ class LoginScreen extends StatelessWidget {
                 navigateAndRemove(context, HomeScreen());
               });
               showToast(
-                msg: 'Login Successfully',
+                msg: '${getLang(context, "loginSuccess")}',
                 state: ToastStates.SUCCESS,
               );
             } else {
               showToast(
-                msg: 'Login Error',
+                msg: '${getLang(context, "loginError")}',
                 state: ToastStates.ERROR,
               );
             }
@@ -68,7 +70,7 @@ class LoginScreen extends StatelessWidget {
         builder: (context, state) => Scaffold(
           appBar: AppBar(
             title: Text(
-              'Dar Al Quran',
+              '${getLang(context, "loginTitle")}',
               style: Theme.of(context).textTheme.subtitle1!.copyWith(
                     fontSize: 20.0,
                   ),
@@ -86,15 +88,15 @@ class LoginScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Login',
+                        '${getLang(context, "login")}',
                         style: Theme.of(context)
                             .textTheme
                             .subtitle1!
-                            .copyWith(fontSize: 50.0),
+                            .copyWith(fontSize: 30.0),
                       ),
-                      const SizedBox(height: 25.0),
+                      const SizedBox(height: 40.0),
                       Text(
-                        'Welcome keeper please login now',
+                        '${getLang(context, "welcome")}',
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                       const SizedBox(height: 24.0),
@@ -103,11 +105,11 @@ class LoginScreen extends StatelessWidget {
                         keyboard: TextInputType.number,
                         validate: (String? value) {
                           if (value!.isEmpty) {
-                            return 'place enter your identity number';
+                            return '${getLang(context, "identityNoIsRequired")}';
                           }
                           return null;
                         },
-                        label: 'Identity number',
+                        label: '${getLang(context, "identityNo")}',
                       ),
                       const SizedBox(height: 15.0),
                       defaultTextFormField(
@@ -115,18 +117,18 @@ class LoginScreen extends StatelessWidget {
                         keyboard: TextInputType.visiblePassword,
                         validate: (String? value) {
                           if (value!.isEmpty) {
-                            return 'password is too short';
+                            return '${getLang(context, "passwordIsTooShort")}';
                           }
                           return null;
                         },
                         obscurePassword: LoginCubit.get(context).isPassword,
-                        label: 'Password',
+                        label: '${getLang(context, "password")}',
                         suffixIcon: LoginCubit.get(context).suffix,
                         onPressedSuffix: () {
                           LoginCubit.get(context).changePasswordVisibility();
                         },
                       ),
-                      const SizedBox(height: 24.0),
+                      const SizedBox(height: 40.0),
                       if (state is LoginLoadingState)
                         const Center(
                           child: CircularProgressIndicator(
@@ -135,7 +137,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       if (state is! LoginLoadingState)
                         defaultButton(
-                            text: 'login'.toUpperCase(),
+                            text: '${getLang(context, "login")}'.toUpperCase(),
                             height: 60.0,
                             fontSizeText: 17.0,
                             onPressedFunction: () {
@@ -154,6 +156,7 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
           ),
+          drawer: DrawerComponent(),
         ),
       ),
     );

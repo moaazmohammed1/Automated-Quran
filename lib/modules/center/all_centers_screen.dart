@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/all_centers_model.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_states.dart';
@@ -21,7 +23,7 @@ class FollowAllCentersScreen extends StatelessWidget {
           AppCubit.get(context).getAllCentersData();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('All Center\'s'),
+              title: Text('${getLang(context, "allCenters")}'),
               centerTitle: true,
             ),
             body: const Center(
@@ -35,7 +37,7 @@ class FollowAllCentersScreen extends StatelessWidget {
           if (allCentersModel!.centers!.isNotEmpty) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Center\'es'),
+                title: Text('${getLang(context, "allCenters")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -62,12 +64,12 @@ class FollowAllCentersScreen extends StatelessWidget {
                   itemCount: allCentersModel!.centers!.length,
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Center\'s'),
+                title: Text('${getLang(context, "allCenters")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -81,16 +83,16 @@ class FollowAllCentersScreen extends StatelessWidget {
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.person_off_sharp,
                       color: Colors.grey,
                       size: 150.0,
                     ),
-                    SizedBox(height: 50.0),
+                    const SizedBox(height: 50.0),
                     Text(
-                      'Centers Not Found',
-                      style: TextStyle(
+                      '${getLang(context, "centersNotFound")}',
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                         fontSize: 30.0,
@@ -99,7 +101,7 @@ class FollowAllCentersScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           }
         }

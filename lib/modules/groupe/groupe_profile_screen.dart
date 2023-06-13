@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/get_one_center_model.dart';
 import 'package:quran_automated/models/get_one_keeper_model.dart';
 import 'package:quran_automated/modules/groupe/update_groupe_data_screen.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../models/all_centers_model.dart';
 import '../../models/all_groups_model.dart';
@@ -57,7 +59,7 @@ class GroupeProfileScreen extends StatelessWidget {
             allKeeperModel = AppCubit.get(context).allKeeperModel;
             return Scaffold(
               appBar: AppBar(
-                title: const Text('Groupe profile'),
+                title: Text('${getLang(context, "groupProfile")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -87,7 +89,7 @@ class GroupeProfileScreen extends StatelessWidget {
                             padding:
                                 const EdgeInsets.only(left: 30.0, bottom: 10.0),
                             child: Text(
-                              'User Data.',
+                              '${getLang(context, "userData")}',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText1!
@@ -105,28 +107,30 @@ class GroupeProfileScreen extends StatelessWidget {
                               children: [
                                 item(
                                   context,
-                                  nameFixed: 'Name: ',
+                                  nameFixed: '${getLang(context, "name")} ',
                                   nameDynamic: '${data.name}',
                                 ),
                                 item(
                                   context,
-                                  nameFixed: 'Status: ',
+                                  nameFixed:
+                                      '${getLang(context, "accountStatus")} ',
                                   nameDynamic: data.status,
                                 ),
                                 item(
                                   context,
-                                  nameFixed: 'Local Region: ',
+                                  nameFixed:
+                                      '${getLang(context, "localRegion")}: ',
                                   nameDynamic: data.localRegion ?? '------',
                                 ),
                                 item(
                                   context,
-                                  nameFixed: 'Center is: ',
+                                  nameFixed: '${getLang(context, "center")}: ',
                                   nameDynamic:
                                       getOneCenterModel!.center!.name ?? '',
                                 ),
                                 item(
                                   context,
-                                  nameFixed: 'Keeper is: ',
+                                  nameFixed: '${getLang(context, "keeper")}: ',
                                   nameDynamic:
                                       getOneKeeperModel!.keeper!.fName ?? '',
                                 ),
@@ -144,7 +148,8 @@ class GroupeProfileScreen extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: defaultButton(
-                                        text: 'Update data',
+                                        text:
+                                            '${getLang(context, "updateGropePage")}',
                                         height: 60.0,
                                         onPressedFunction: () {
                                           navigateTo(
@@ -159,7 +164,8 @@ class GroupeProfileScreen extends StatelessWidget {
                                     const SizedBox(width: 15.0),
                                     Expanded(
                                       child: defaultButton(
-                                        text: 'Delete Groupe',
+                                        text:
+                                            '${getLang(context, "deleteGrope")}',
                                         color: redColor,
                                         height: 60.0,
                                         onPressedFunction: () {
@@ -187,7 +193,7 @@ class GroupeProfileScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           }
         }

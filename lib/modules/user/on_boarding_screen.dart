@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quran_automated/modules/user/login/login_screen.dart';
-
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/network/local/cache_helper.dart';
 import 'package:quran_automated/shared/style/style.dart';
@@ -14,25 +14,7 @@ class OnBoardingModel {
   OnBoardingModel({this.image, this.title, this.body});
 }
 
-Image img = Image.asset('assets/images/image.jpg');
 String _image = 'assets/images/image.jpg';
-List<OnBoardingModel> boarding = [
-  OnBoardingModel(
-    image: _image,
-    title: 'keep department',
-    body: 'keep the quran',
-  ),
-  OnBoardingModel(
-    image: _image,
-    title: 'keep department',
-    body: 'keep the quran',
-  ),
-  OnBoardingModel(
-    image: _image,
-    title: 'keep department',
-    body: 'keep the quran',
-  ),
-];
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -59,6 +41,23 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<OnBoardingModel> boarding = [
+      OnBoardingModel(
+        image: _image,
+        title: '${getLang(context, "title1")}',
+        body: '${getLang(context, "body1")}',
+      ),
+      OnBoardingModel(
+        image: _image,
+        title: '${getLang(context, "title2")}',
+        body: '${getLang(context, "body2")}',
+      ),
+      OnBoardingModel(
+        image: _image,
+        title: '${getLang(context, "title3")}',
+        body: '${getLang(context, "body3")}',
+      ),
+    ];
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -68,7 +67,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: defaultTextButton(
                 context,
                 function: skipOnBoarding,
-                text: 'skip',
+                text: '${getLang(context, "skip")}',
               ),
             ),
           ),

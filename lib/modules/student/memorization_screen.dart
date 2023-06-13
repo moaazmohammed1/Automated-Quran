@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/keep_model.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/components/components.dart';
 import '../../shared/cubit/app_cubit.dart';
@@ -20,7 +21,7 @@ class SaveAndReviewScreen extends StatelessWidget {
           AppCubit.get(context).studentViewKeep();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Student Memorization'),
+              title: Text('${getLang(context, "studentMemorization")}'),
               centerTitle: true,
             ),
             body: const Center(
@@ -34,7 +35,7 @@ class SaveAndReviewScreen extends StatelessWidget {
           return Scaffold(
             appBar: defaultAppBar(
               context: context,
-              title: 'Memorization',
+              title: '${getLang(context, "memorization")}',
             ),
             body: ListView.separated(
               physics: const BouncingScrollPhysics(),
@@ -53,7 +54,7 @@ class SaveAndReviewScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Day is :  ${keepModel!.keeps!.data![index].dayEnName ?? 'null'}',
+                          '${getLang(context, "dayIs")} ${keepModel!.keeps!.data![index].dayEnName ?? 'null'}',
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18.0,
@@ -61,7 +62,7 @@ class SaveAndReviewScreen extends StatelessWidget {
                         ),
                         Text(
                           // DateFormat.yMd().format(
-                          'Date is : ${DateFormat.yMMMd().format(
+                          '${getLang(context, "dateIs")} ${DateFormat.yMMMd().format(
                             DateTime.parse(
                                 keepModel!.keeps!.data![index].createdAt!),
                           )}',
@@ -73,30 +74,30 @@ class SaveAndReviewScreen extends StatelessWidget {
                         ),
                         const Divider(color: Colors.black),
                         const SizedBox(height: 10),
-                        const Text(
-                          'The Keep:',
-                          style: TextStyle(
+                        Text(
+                          '${getLang(context, "theKeep")}:',
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18.0,
                           ),
                         ),
                         const SizedBox(height: 5),
                         Text(
-                          'Surah: ${keepModel!.keeps!.data![index].fromSurah}',
+                          '${getLang(context, "surah")} ${keepModel!.keeps!.data![index].fromSurah}',
                           style: Theme.of(context)
                               .textTheme
                               .bodyText1!
                               .copyWith(color: Colors.black),
                         ),
                         Text(
-                          'From Ayah: ${keepModel!.keeps!.data![index].fromAyah}  To Ayah: ${keepModel!.keeps!.data![index].toAyah}',
+                          '${getLang(context, "fromAyah")}: ${keepModel!.keeps!.data![index].fromAyah}  ${getLang(context, "toAyah")}: ${keepModel!.keeps!.data![index].toAyah}',
                           style: Theme.of(context)
                               .textTheme
                               .bodyText1!
                               .copyWith(color: Colors.black),
                         ),
                         Text(
-                          'Faults number: ${keepModel!.keeps!.data![index].faults}',
+                          '${getLang(context, "faultsNumber")}: ${keepModel!.keeps!.data![index].faults}',
                           style: Theme.of(context)
                               .textTheme
                               .bodyText1!

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/attendance_model.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/components/components.dart';
 import '../../shared/cubit/app_cubit.dart';
@@ -29,7 +30,7 @@ class AttendanceScreen extends StatelessWidget {
           return Scaffold(
             appBar: defaultAppBar(
               context: context,
-              title: 'Attendance & Absence',
+              title: '${getLang(context, "attendanceAbsence")}',
             ),
             body: ListView.builder(
               physics: const BouncingScrollPhysics(),
@@ -48,14 +49,14 @@ class AttendanceScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Day is  ${attendanceModel!.all![index].dayEnName ?? 'null'}',
+                          '${getLang(context, "dayIs")} ${attendanceModel!.all![index].dayEnName ?? 'null'}',
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 18.0,
                           ),
                         ),
                         Text(
-                          'Date is  ${attendanceModel!.all![index].absenceDate!}',
+                          '${getLang(context, "dateIs")} ${attendanceModel!.all![index].absenceDate!}',
                           style: const TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
@@ -65,8 +66,8 @@ class AttendanceScreen extends StatelessWidget {
                         const SizedBox(height: 10),
                         Text(
                           attendanceModel!.all![index].status == 1
-                              ? 'Yes Attendance'
-                              : 'Absence',
+                              ? '${getLang(context, "attendance")}'
+                              : '${getLang(context, "absence")}',
                           style: Theme.of(context)
                               .textTheme
                               .bodyText1!

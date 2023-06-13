@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quran_automated/modules/branch/add_branch_screen.dart';
 import 'package:quran_automated/modules/center/add_center_screen.dart';
 import 'package:quran_automated/modules/groupe/add_groupe_screen.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/network/end_point.dart';
@@ -15,7 +16,7 @@ class RegistrationScreen extends StatelessWidget {
     return Scaffold(
       appBar: defaultAppBar(
         context: context,
-        title: 'Registration Screen',
+        title: '${getLang(context, "registerPageButton")}',
         centerTitle: true,
       ),
       body: Container(
@@ -34,7 +35,7 @@ class RegistrationScreen extends StatelessWidget {
                 //
                 if (position == 'admin' || position == 'manager')
                   textButtonApp(
-                    text: 'Admin',
+                    text: '${getLang(context, "admins")}',
                     function: () {
                       navigateTo(
                         context,
@@ -44,12 +45,9 @@ class RegistrationScreen extends StatelessWidget {
                   ),
 
                 //
-                if (position == 'admin' || position == 'manager'
-                // ||
-                // position == 'supervisor'
-                )
+                if (position == 'admin' || position == 'manager')
                   textButtonApp(
-                    text: 'DS',
+                    text: '${getLang(context, "dss")}',
                     function: () {
                       navigateTo(
                         context,
@@ -61,12 +59,9 @@ class RegistrationScreen extends StatelessWidget {
                 //
                 if (position == 'admin' ||
                     position == 'manager' ||
-                    position == 'supervisor'
-                // ||
-                // position == 'keeper'
-                )
+                    position == 'supervisor')
                   textButtonApp(
-                    text: 'Keeper',
+                    text: '${getLang(context, "keepers")}',
                     function: () {
                       navigateTo(
                         context,
@@ -81,7 +76,7 @@ class RegistrationScreen extends StatelessWidget {
                     position == 'supervisor' ||
                     position == 'keeper')
                   textButtonApp(
-                    text: 'Student',
+                    text: '${getLang(context, "students")}',
                     function: () {
                       navigateTo(
                         context,
@@ -93,7 +88,7 @@ class RegistrationScreen extends StatelessWidget {
                 //
                 if (position == 'admin' || position == 'manager')
                   textButtonApp(
-                    text: 'Branch',
+                    text: '${getLang(context, "branches")}',
                     function: () {
                       navigateTo(
                         context,
@@ -103,18 +98,11 @@ class RegistrationScreen extends StatelessWidget {
                   ),
 
                 //
-                // if (position == 'admin' || position == 'manager')
-                // textButtonApp(
-                //   text: 'GCS',
-                //   function: () {},
-                // ),
-
-                //
                 if (position == 'admin' ||
                     position == 'manager' ||
                     position == 'supervisor')
                   textButtonApp(
-                    text: 'Center',
+                    text: '${getLang(context, "centers")}',
                     function: () {
                       navigateTo(
                         context,
@@ -124,12 +112,11 @@ class RegistrationScreen extends StatelessWidget {
                   ),
 
                 //
-                //
                 if (position == 'admin' ||
                     position == 'manager' ||
                     position == 'supervisor')
                   textButtonApp(
-                    text: 'Groupe',
+                    text: '${getLang(context, "groups")}',
                     function: () {
                       navigateTo(
                         context,
@@ -137,19 +124,6 @@ class RegistrationScreen extends StatelessWidget {
                       );
                     },
                   ),
-                // if (position == 'admin' ||
-                //     position == 'manager' ||
-                //     position == 'supervisor' ||
-                //     position == 'keeper')
-                //   textButtonApp(
-                //     text: 'Add Student in Groupe',
-                //     function: () {
-                //       navigateTo(
-                //         context,
-                //         AddStudentInGroupeScreen(),
-                //       );
-                //     },
-                //   ),
               ],
             ),
           ),

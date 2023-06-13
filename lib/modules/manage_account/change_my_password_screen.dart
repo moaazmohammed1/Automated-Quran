@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import '../../shared/components/components.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_states.dart';
@@ -18,7 +19,9 @@ class ChangeMyPasswordScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: defaultAppBar(
-              context: context, title: 'Change My Password', centerTitle: true),
+              context: context,
+              title: '${getLang(context, "changePasswordButton")}',
+              centerTitle: true),
           body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
@@ -33,12 +36,12 @@ class ChangeMyPasswordScreen extends StatelessWidget {
                       keyboard: TextInputType.visiblePassword,
                       validate: (String? value) {
                         if (value!.isEmpty) {
-                          return 'password is too short';
+                          return '${getLang(context, "passwordIsTooShort")}';
                         }
                         return null;
                       },
                       obscurePassword: AppCubit.get(context).isCurrentPassword,
-                      label: 'Current Password',
+                      label: '${getLang(context, "currentPassword")}',
                       suffixIcon: AppCubit.get(context).currentSuffix,
                       onPressedSuffix: () {
                         AppCubit.get(context).changePasswordVisibility(
@@ -53,12 +56,12 @@ class ChangeMyPasswordScreen extends StatelessWidget {
                       keyboard: TextInputType.visiblePassword,
                       validate: (String? value) {
                         if (value!.isEmpty) {
-                          return 'password is too short';
+                          return '${getLang(context, "passwordIsTooShort")}';
                         }
                         return null;
                       },
                       obscurePassword: AppCubit.get(context).isNewPassword,
-                      label: 'New Password',
+                      label: '${getLang(context, "newPassword")}',
                       suffixIcon: AppCubit.get(context).newSuffix,
                       onPressedSuffix: () {
                         AppCubit.get(context).changePasswordVisibility(
@@ -73,12 +76,12 @@ class ChangeMyPasswordScreen extends StatelessWidget {
                       keyboard: TextInputType.visiblePassword,
                       validate: (String? value) {
                         if (value!.isEmpty) {
-                          return 'password is too short';
+                          return '${getLang(context, "passwordIsTooShort")}';
                         }
                         return null;
                       },
                       obscurePassword: AppCubit.get(context).isConfirmPassword,
-                      label: 'Confirm Password',
+                      label: '${getLang(context, "confirmPassword")}',
                       suffixIcon: AppCubit.get(context).confirmSuffix,
                       onPressedSuffix: () {
                         AppCubit.get(context).changePasswordVisibility(
@@ -89,7 +92,7 @@ class ChangeMyPasswordScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 40.0),
                     defaultButton(
-                      text: 'save',
+                      text: '${getLang(context, "saveButton")}',
                       onPressedFunction: () {
                         if (formKey.currentState!.validate()) {
                           AppCubit.get(context).changeMyPassword(

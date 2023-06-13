@@ -16,3 +16,4 @@
 
 String? token = '';
 String? position = '';
+String? lang = 'ar';

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/all_admin_model.dart';
 import 'package:quran_automated/modules/admin/admin_profile_screen.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_states.dart';
@@ -21,7 +23,7 @@ class FollowAllAdminScreen extends StatelessWidget {
           AppCubit.get(context).getAllAdminData();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('All Admin\'s'),
+              title: Text('${getLang(context, "allAdmins")}'),
               centerTitle: true,
             ),
             body: const Center(
@@ -35,7 +37,7 @@ class FollowAllAdminScreen extends StatelessWidget {
           if (allAdminsModel!.count! != 0) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Admin\'s'),
+                title: Text('${getLang(context, "allAdmins")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -62,12 +64,12 @@ class FollowAllAdminScreen extends StatelessWidget {
                   itemCount: allAdminsModel!.count!,
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Admin\'s'),
+                title: Text('${getLang(context, "allAdmins")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -81,16 +83,16 @@ class FollowAllAdminScreen extends StatelessWidget {
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.person_off_sharp,
                       color: Colors.grey,
                       size: 150.0,
                     ),
-                    SizedBox(height: 50.0),
+                    const SizedBox(height: 50.0),
                     Text(
-                      'Admins Not Found',
-                      style: TextStyle(
+                      '${getLang(context, "adminsNotFound")}',
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                         fontSize: 30.0,
@@ -99,7 +101,7 @@ class FollowAllAdminScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           }
         }

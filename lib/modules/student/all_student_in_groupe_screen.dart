@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/modules/keeper/tests_screen.dart';
 import 'package:quran_automated/modules/student/student_profile_screen.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../models/all_student_in_groupe_model.dart';
 import '../../models/data_model.dart';
@@ -25,7 +27,9 @@ class FollowAllStudentsInGroupeScreen extends StatelessWidget {
           AppCubit.get(context).getAllStudentsInGroupeData();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('All Student\'s in Group'),
+              title: Text(
+                '${getLang(context, "allStudentsInGroup")}',
+              ),
               centerTitle: true,
             ),
             body: const Center(
@@ -41,7 +45,7 @@ class FollowAllStudentsInGroupeScreen extends StatelessWidget {
                 studentsInGroupeModel!.group!.isNotEmpty) {
               return Scaffold(
                 appBar: AppBar(
-                  title: const Text('All Student\'s in Group'),
+                  title: Text('${getLang(context, "allStudentsInGroup")}'),
                   centerTitle: true,
                   actions: [
                     IconButton(
@@ -72,12 +76,12 @@ class FollowAllStudentsInGroupeScreen extends StatelessWidget {
                         studentsInGroupeModel!.group![0].students!.length,
                   ),
                 ),
-                drawer: defaultDrawer(context),
+                drawer:   DrawerComponent(),
               );
             } else {
               return Scaffold(
                 appBar: AppBar(
-                  title: const Text('All Student\'s in Group'),
+                  title: Text('${getLang(context, "allStudentsInGroup")}'),
                   centerTitle: true,
                   actions: [
                     IconButton(
@@ -91,16 +95,16 @@ class FollowAllStudentsInGroupeScreen extends StatelessWidget {
                 body: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
+                    children: [
+                      const Icon(
                         Icons.person_off_sharp,
                         color: Colors.grey,
                         size: 150.0,
                       ),
-                      SizedBox(height: 50.0),
+                      const SizedBox(height: 50.0),
                       Text(
-                        'Student\'s Not Found',
-                        style: TextStyle(
+                        '${getLang(context, "allStudentsInGroup")}',
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
                           fontSize: 30.0,
@@ -109,13 +113,13 @@ class FollowAllStudentsInGroupeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                drawer: defaultDrawer(context),
+                drawer:   DrawerComponent(),
               );
             }
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Student\'s in Group'),
+                title: Text('${getLang(context, "allStudentsInGroup")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -147,7 +151,7 @@ class FollowAllStudentsInGroupeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer:   DrawerComponent(),
             );
           }
         }

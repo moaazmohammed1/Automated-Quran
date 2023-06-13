@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/tests_model.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
@@ -12,7 +13,7 @@ class QuestionScreen extends StatelessWidget {
   TextEditingController markController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
-  // List<Question> tests = [];
+
   TestModel? testModel;
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class QuestionScreen extends StatelessWidget {
         return Scaffold(
           appBar: defaultAppBar(
             context: context,
-            title: 'Test Questions',
+            title: '${getLang(context, "testQuestions")}',
           ),
           body: Center(
             child: Form(
@@ -42,30 +43,19 @@ class QuestionScreen extends StatelessWidget {
                   const Divider(thickness: 5),
                   Container(
                     height: 60.0,
-                    // decoration: BoxDecoration(
-                    //     border: Border.all(),
-                    //     borderRadius: BorderRadius.circular(8.0)),
                     padding: const EdgeInsets.symmetric(horizontal: 10.0),
                     margin: const EdgeInsets.all(15.0),
                     child: defaultTextFormField(
-                      label: 'Enter Student Mark',
+                      label: '${getLang(context, "enterStudentMark")}',
                       controller: markController,
                       keyboard: TextInputType.number,
                       validate: (String? value) {
                         if (value!.isEmpty) {
-                          return 'place enter student mark';
+                          return '${getLang(context, "RequiredStudentMark")}';
                         }
                         return null;
                       },
                     ),
-                    // child: const TextField(
-                    //   style: TextStyle(fontSize: 18.0),
-                    //   decoration: InputDecoration(
-                    //     hintText: 'Enter Student Mark',
-                    //     focusColor: defaultColor,
-                    //     hintStyle: TextStyle(fontSize: 20.0),
-                    //   ),
-                    // ),
                   ),
                   Container(
                     margin: const EdgeInsets.only(bottom: 15.0),
@@ -73,7 +63,7 @@ class QuestionScreen extends StatelessWidget {
                     child: defaultButton(
                       height: 60.0,
                       fontSizeText: 17.0,
-                      text: 'Submit Mark',
+                      text: '${getLang(context, "submitMark")}',
                       onPressedFunction: () {
                         AppCubit.get(context).sendMarkQuestion(
                           context,

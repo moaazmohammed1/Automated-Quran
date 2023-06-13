@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/modules/student/student_profile_screen.dart';
-
+import 'package:quran_automated/shared/components/applocal.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import '../../models/all_students_model.dart';
 import '../../models/data_model.dart';
 import '../../shared/components/components.dart';
@@ -22,7 +23,9 @@ class AddStudentInGroupeScreen extends StatelessWidget {
           AppCubit.get(context).getAllStudentsData();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('All Student\'s'),
+              title: Text(
+                '${getLang(context, "allStudents")}',
+              ),
               centerTitle: true,
             ),
             body: const Center(
@@ -36,7 +39,9 @@ class AddStudentInGroupeScreen extends StatelessWidget {
           if (allStudentModel!.students!.isNotEmpty) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Student\'s'),
+                title: Text(
+                  '${getLang(context, "allStudents")}',
+                ),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -63,12 +68,14 @@ class AddStudentInGroupeScreen extends StatelessWidget {
                   itemCount: allStudentModel!.students!.length,
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Student\'s'),
+                title: Text(
+                  '${getLang(context, "allStudents")}',
+                ),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -82,16 +89,16 @@ class AddStudentInGroupeScreen extends StatelessWidget {
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.person_off_sharp,
                       color: Colors.grey,
                       size: 150.0,
                     ),
-                    SizedBox(height: 50.0),
+                    const SizedBox(height: 50.0),
                     Text(
-                      'Student\'s Not Found',
-                      style: TextStyle(
+                      '${getLang(context, "studentsNotFounds")}',
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                         fontSize: 30.0,
@@ -100,7 +107,7 @@ class AddStudentInGroupeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           }
         }

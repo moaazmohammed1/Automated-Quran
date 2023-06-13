@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import '../../models/data_model.dart';
 import '../../shared/cubit/app_cubit.dart';
@@ -37,7 +38,9 @@ class UpdateDirectSupervisorScreen extends StatelessWidget {
         statusController.text = data.status!;
         return Scaffold(
           appBar: defaultAppBar(
-              context: context, title: 'Update Admin', centerTitle: true),
+              context: context,
+              title: '${getLang(context, "updateDs")}',
+              centerTitle: true),
           body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
@@ -55,10 +58,11 @@ class UpdateDirectSupervisorScreen extends StatelessWidget {
                             keyboard: TextInputType.text,
                             validate: (String? value) {
                               if (value!.isEmpty) {
-                                return 'First Name is required';
-                              } return null;
+                                return '${getLang(context, "firstNameIsRequired")}';
+                              }
+                              return null;
                             },
-                            label: 'First name',
+                            label: '${getLang(context, "firstName")}',
                           ),
                         ),
                         const SizedBox(width: 6),
@@ -66,7 +70,7 @@ class UpdateDirectSupervisorScreen extends StatelessWidget {
                           child: defaultTextFormField(
                             controller: sNameController,
                             keyboard: TextInputType.text,
-                            label: 'Second name',
+                            label: '${getLang(context, "secondName")}',
                           ),
                         ),
                       ],
@@ -78,7 +82,7 @@ class UpdateDirectSupervisorScreen extends StatelessWidget {
                           child: defaultTextFormField(
                             controller: tNameController,
                             keyboard: TextInputType.text,
-                            label: 'Third name',
+                            label: '${getLang(context, "thirdName")}',
                           ),
                         ),
                         const SizedBox(width: 6),
@@ -88,10 +92,11 @@ class UpdateDirectSupervisorScreen extends StatelessWidget {
                             keyboard: TextInputType.text,
                             validate: (String? value) {
                               if (value!.isEmpty) {
-                                return 'Last Name is required';
-                              } return null;
+                                return '${getLang(context, "lastNameIsRequired")}';
+                              }
+                              return null;
                             },
-                            label: 'Last name',
+                            label: '${getLang(context, "lastName")}',
                           ),
                         ),
                       ],
@@ -105,10 +110,11 @@ class UpdateDirectSupervisorScreen extends StatelessWidget {
                             keyboard: TextInputType.number,
                             validate: (String? value) {
                               if (value!.isEmpty) {
-                                return 'identity number is required';
-                              } return null;
+                                return '${getLang(context, "identityNo")}';
+                              }
+                              return null;
                             },
-                            label: 'Identity number',
+                            label: '${getLang(context, "identityNo")}',
                           ),
                         ),
                         const SizedBox(width: 6),
@@ -116,7 +122,7 @@ class UpdateDirectSupervisorScreen extends StatelessWidget {
                           child: defaultTextFormField(
                             controller: phoneNoController,
                             keyboard: TextInputType.number,
-                            label: 'Phone number',
+                            label: '${getLang(context, "phoneNo")}',
                           ),
                         ),
                       ],
@@ -125,55 +131,8 @@ class UpdateDirectSupervisorScreen extends StatelessWidget {
                     defaultTextFormField(
                       controller: emailController,
                       keyboard: TextInputType.text,
-                      label: 'email',
+                      label: '${getLang(context, "email")}',
                     ),
-                    // const SizedBox(height: 20),
-
-                    // Row(
-                    //   children: [
-                    //     Expanded(
-                    //       child: defaultTextFormField(
-                    //         controller: TextEditingController(),
-                    //         onSubmitted: (value) {
-                    //           // if (formKey.currentState!.validate()) {
-                    //           //   // ShopLoginCubit.get(context).userLogin(
-                    //           //   //   email: emailController.text,
-                    //           //   //   password: passwordController.text,
-                    //           //   // );
-                    //           // }
-                    //         },
-                    //         // validate: (String? value) {
-                    //         //   if (value!.isEmpty) {
-                    //         //     return 'password is too short';
-                    //         //   }
-                    //         // },
-
-                    //         label: 'GSM',
-                    //       ),
-                    //     ),
-                    //     const SizedBox(width: 6),
-                    //     Expanded(
-                    //       child: defaultTextFormField(
-                    //         controller: TextEditingController(),
-                    //         onSubmitted: (value) {
-                    //           // if (formKey.currentState!.validate()) {
-                    //           //   // ShopLoginCubit.get(context).userLogin(
-                    //           //   //   email: emailController.text,
-                    //           //   //   password: passwordController.text,
-                    //           //   // );
-                    //           // }
-                    //         },
-                    //         // validate: (String? value) {
-                    //         //   if (value!.isEmpty) {
-                    //         //     return 'password is too short';
-                    //         //   }
-                    //         // },
-
-                    //         label: 'Branch',
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
                     const SizedBox(height: 20),
                     Row(
                       children: [
@@ -181,7 +140,7 @@ class UpdateDirectSupervisorScreen extends StatelessWidget {
                           child: defaultTextFormField(
                             controller: genderController,
                             readOnly: true,
-                            label: 'Gender',
+                            label: '${getLang(context, "gender")}',
                           ),
                         ),
                         const SizedBox(width: 6),
@@ -189,15 +148,14 @@ class UpdateDirectSupervisorScreen extends StatelessWidget {
                           child: defaultTextFormField(
                             controller: statusController,
                             readOnly: true,
-                            label: 'Account State',
+                            label: '${getLang(context, "accountStatus")}',
                           ),
                         ),
                       ],
                     ),
-
                     const SizedBox(height: 20.0),
                     defaultButton(
-                      text: 'update',
+                      text: '${getLang(context, "updateButton")}',
                       onPressedFunction: () {
                         if (formKey.currentState!.validate()) {
                           AppCubit.get(context).updateDirectSupervisorData(
@@ -220,12 +178,6 @@ class UpdateDirectSupervisorScreen extends StatelessWidget {
                       fontSizeText: 18.0,
                     ),
                     const SizedBox(height: 20.0),
-                    defaultButton(
-                      text: 'Change Password',
-                      onPressedFunction: () {},
-                      height: 50.0,
-                      fontSizeText: 18.0,
-                    ),
                   ],
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 
@@ -19,7 +20,9 @@ class AddBranchScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) => Scaffold(
         appBar: defaultAppBar(
-            context: context, title: 'Add Branch', centerTitle: true),
+            context: context,
+            title: '${getLang(context, "addBranch")}',
+            centerTitle: true),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Padding(
@@ -33,11 +36,11 @@ class AddBranchScreen extends StatelessWidget {
                     keyboard: TextInputType.text,
                     validate: (String? value) {
                       if (value!.isEmpty) {
-                        return 'Branch Name is required';
+                        return '${getLang(context, "branchNameRequired")}';
                       }
                       return null;
                     },
-                    label: 'Branch Name',
+                    label: '${getLang(context, "branchName")}',
                   ),
                   const SizedBox(height: 20),
                   Container(
@@ -75,9 +78,10 @@ class AddBranchScreen extends StatelessWidget {
                                                       status: 'active');
                                             },
                                           ),
-                                          const Text(
-                                            'active',
-                                            style: TextStyle(fontSize: 18.0),
+                                          Text(
+                                            '${getLang(context, "active")}',
+                                            style:
+                                                const TextStyle(fontSize: 18.0),
                                           ),
                                         ],
                                       ),
@@ -93,9 +97,10 @@ class AddBranchScreen extends StatelessWidget {
                                                       status: 'pending');
                                             },
                                           ),
-                                          const Text(
-                                            'pending',
-                                            style: TextStyle(fontSize: 18.0),
+                                          Text(
+                                            '${getLang(context, "pending")}',
+                                            style:
+                                                const TextStyle(fontSize: 18.0),
                                           ),
                                         ],
                                       ),
@@ -111,9 +116,10 @@ class AddBranchScreen extends StatelessWidget {
                                                       status: 'inactive');
                                             },
                                           ),
-                                          const Text(
-                                            'inactive',
-                                            style: TextStyle(fontSize: 18.0),
+                                          Text(
+                                            '${getLang(context, "inactive")}',
+                                            style:
+                                                const TextStyle(fontSize: 18.0),
                                           ),
                                         ],
                                       ),
@@ -130,7 +136,7 @@ class AddBranchScreen extends StatelessWidget {
                           Text(
                             AppCubit.get(context).selectedBranchStatus != ''
                                 ? AppCubit.get(context).selectedBranchStatus
-                                : 'Branch Status',
+                                : '${getLang(context, "branchStatus")}',
                             style: const TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
@@ -151,11 +157,11 @@ class AddBranchScreen extends StatelessWidget {
                   defaultTextFormField(
                     controller: localRegionController,
                     keyboard: TextInputType.text,
-                    label: 'Local region (option)',
+                    label: '${getLang(context, "localRegion")}',
                   ),
                   const SizedBox(height: 30),
                   defaultButton(
-                    text: 'create',
+                    text: '${getLang(context, "create")}',
                     height: 60.0,
                     fontSizeText: 18.0,
                     onPressedFunction: () {

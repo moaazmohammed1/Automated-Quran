@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
@@ -29,12 +30,14 @@ class AddUserScreen extends StatelessWidget {
         appBar: defaultAppBar(
             context: context,
             title: type == 'admin'
-                ? 'Add Admin'
+                ? '${getLang(context, "addAdmin")}'
                 : (type == 'supervisor'
-                    ? 'Add Direct Supervisor'
+                    ? '${getLang(context, "addDS")}'
                     : (type == 'keeper'
-                        ? 'Add Keeper'
-                        : (type == 'student' ? 'Add Student' : ''))),
+                        ? '${getLang(context, "addKeeper")}'
+                        : (type == 'student'
+                            ? '${getLang(context, "addStudent")}'
+                            : ''))),
             centerTitle: true),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -52,11 +55,11 @@ class AddUserScreen extends StatelessWidget {
                           keyboard: TextInputType.text,
                           validate: (String? value) {
                             if (value!.isEmpty) {
-                              return 'First Name is required';
+                              return '${getLang(context, "firstNameIsRequired")}';
                             }
                             return null;
                           },
-                          label: 'First name',
+                          label: '${getLang(context, "firstName")}',
                         ),
                       ),
                       const SizedBox(width: 6),
@@ -64,7 +67,7 @@ class AddUserScreen extends StatelessWidget {
                         child: defaultTextFormField(
                           controller: sNameController,
                           keyboard: TextInputType.text,
-                          label: 'Second name (option)',
+                          label: '${getLang(context, "secondName")}',
                         ),
                       ),
                     ],
@@ -76,7 +79,7 @@ class AddUserScreen extends StatelessWidget {
                         child: defaultTextFormField(
                           controller: tNameController,
                           keyboard: TextInputType.text,
-                          label: 'Third name (option)',
+                          label: '${getLang(context, "thirdName")}',
                         ),
                       ),
                       const SizedBox(width: 6),
@@ -86,11 +89,11 @@ class AddUserScreen extends StatelessWidget {
                           keyboard: TextInputType.text,
                           validate: (String? value) {
                             if (value!.isEmpty) {
-                              return 'Last Name is required';
+                              return '${getLang(context, "lastNameIsRequired")}';
                             }
                             return null;
                           },
-                          label: 'Last name',
+                          label: '${getLang(context, "lastName")}',
                         ),
                       ),
                     ],
@@ -104,11 +107,11 @@ class AddUserScreen extends StatelessWidget {
                           keyboard: TextInputType.number,
                           validate: (String? value) {
                             if (value!.isEmpty) {
-                              return 'identity number is required';
+                              return '${getLang(context, "identityNoIsRequired")}';
                             }
                             return null;
                           },
-                          label: 'Identity number',
+                          label: '${getLang(context, "identityNo")}',
                         ),
                       ),
                       const SizedBox(width: 6),
@@ -116,7 +119,7 @@ class AddUserScreen extends StatelessWidget {
                         child: defaultTextFormField(
                           controller: phoneNoController,
                           keyboard: TextInputType.number,
-                          label: 'Phone number ( option )',
+                          label: '${getLang(context, "phoneNo")}',
                         ),
                       ),
                     ],
@@ -126,7 +129,7 @@ class AddUserScreen extends StatelessWidget {
                     controller: emailController,
                     keyboard: TextInputType.emailAddress,
                     onSubmitted: (value) {},
-                    label: 'Enter Email (option)',
+                    label: '${getLang(context, "email")}',
                   ),
                   const SizedBox(height: 20),
                   defaultTextFormField(
@@ -134,12 +137,12 @@ class AddUserScreen extends StatelessWidget {
                     keyboard: TextInputType.visiblePassword,
                     validate: (String? value) {
                       if (value!.isEmpty) {
-                        return 'password is required';
+                        return '${getLang(context, "passwordIsRequired")}';
                       }
                       return null;
                     },
                     obscurePassword: AppCubit.get(context).isPassword,
-                    label: 'Password',
+                    label: '${getLang(context, "password")}',
                     suffixIcon: AppCubit.get(context).suffix,
                     onPressedSuffix: () {
                       AppCubit.get(context).changePasswordVisibilityInAdmin();
@@ -370,7 +373,7 @@ class AddUserScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20.0),
                   defaultButton(
-                    text: 'create',
+                    text: '${getLang(context, "create")}',
                     onPressedFunction: () {
                       if (formKey.currentState!.validate()) {
                         if (type == 'admin') {

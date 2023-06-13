@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quran_automated/models/get_keeper_test_model.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_states.dart';
@@ -19,7 +21,7 @@ class AllTestsScreen extends StatelessWidget {
           AppCubit.get(context).getKeeperTests();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('All Tests'),
+              title: Text('${getLang(context, "allTest")}'),
               centerTitle: true,
             ),
             body: const Center(
@@ -33,7 +35,7 @@ class AllTestsScreen extends StatelessWidget {
           if (getKeeperTestsModel!.tests!.isNotEmpty) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Tests'),
+                title: Text('${getLang(context, "allTest")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -56,12 +58,12 @@ class AllTestsScreen extends StatelessWidget {
                   itemCount: getKeeperTestsModel!.tests!.length,
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Tests'),
+                title: Text('${getLang(context, "allTest")}'),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -75,16 +77,16 @@ class AllTestsScreen extends StatelessWidget {
               body: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Icon(
+                  children: [
+                    const Icon(
                       Icons.person_off_sharp,
                       color: Colors.grey,
                       size: 150.0,
                     ),
-                    SizedBox(height: 50.0),
+                    const SizedBox(height: 50.0),
                     Text(
-                      'Test\'s Not Found',
-                      style: TextStyle(
+                      '${getLang(context, "testsNotFounds")}',
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
                         fontSize: 30.0,
@@ -93,7 +95,7 @@ class AllTestsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer: DrawerComponent(),
             );
           }
         }
@@ -112,7 +114,7 @@ class AllTestsScreen extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  'Test Info. ',
+                  '${getLang(context, "testInfo")}',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Colors.grey[500],
@@ -128,7 +130,7 @@ class AllTestsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Student: ',
+                  '${getLang(context, "student")}',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: defaultColor,
@@ -153,7 +155,7 @@ class AllTestsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Juz: ',
+                  '${getLang(context, "juz")}',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                         fontWeight: FontWeight.bold,
                         color: defaultColor,
@@ -178,7 +180,7 @@ class AllTestsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Type Test: ',
+                  '${getLang(context, "typeTest")}',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                       fontWeight: FontWeight.bold, color: defaultColor),
                   maxLines: 1,
@@ -198,7 +200,7 @@ class AllTestsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Test Mark: ',
+                  '${getLang(context, "testMark")}',
                   style: Theme.of(context).textTheme.bodyText1!.copyWith(
                       fontWeight: FontWeight.bold, color: defaultColor),
                   maxLines: 1,

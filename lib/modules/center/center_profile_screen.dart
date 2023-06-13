@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../models/all_centers_model.dart';
 import '../../models/get_one_branch_model.dart';
+import '../../shared/components/drawer_component.dart';
 import '../../shared/cubit/app_cubit.dart';
 import '../../shared/cubit/app_states.dart';
 import 'update_center_data_screen.dart';
@@ -15,9 +17,7 @@ class CenterProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
-      listener: (context, state) {
-        
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         if (AppCubit.get(context).getOneBranchModel == null ||
             AppCubit.get(context).getOneBranchModel!.branch!.id !=
@@ -28,7 +28,7 @@ class CenterProfileScreen extends StatelessWidget {
           getOneBranchModel = AppCubit.get(context).getOneBranchModel;
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Center profile'),
+              title: Text('${getLang(context, "centerProfile")}'),
               centerTitle: true,
               actions: [
                 IconButton(
@@ -58,7 +58,7 @@ class CenterProfileScreen extends StatelessWidget {
                           padding:
                               const EdgeInsets.only(left: 30.0, bottom: 10.0),
                           child: Text(
-                            'User Data.',
+                            '${getLang(context, "userData")} ',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText1!
@@ -76,22 +76,25 @@ class CenterProfileScreen extends StatelessWidget {
                             children: [
                               item(
                                 context,
-                                nameFixed: 'Name: ',
+                                nameFixed:
+                                    '${getLang(context, "centerName")}: ',
                                 nameDynamic: '${data.name}',
                               ),
                               item(
                                 context,
-                                nameFixed: 'Status: ',
+                                nameFixed:
+                                    '${getLang(context, "centerStatus")}: ',
                                 nameDynamic: data.status,
                               ),
                               item(
                                 context,
-                                nameFixed: 'Local Region: ',
+                                nameFixed:
+                                    '${getLang(context, "localRegion")}: ',
                                 nameDynamic: data.localRegion ?? '',
                               ),
                               item(
                                 context,
-                                nameFixed: 'Branch is: ',
+                                nameFixed: '${getLang(context, "branch")}: ',
                                 nameDynamic:
                                     getOneBranchModel!.branch!.name ?? '',
                               ),
@@ -109,7 +112,8 @@ class CenterProfileScreen extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: defaultButton(
-                                      text: 'Update data',
+                                      text:
+                                          '${getLang(context, "updateCenterPage")}',
                                       height: 60.0,
                                       onPressedFunction: () {
                                         navigateTo(
@@ -124,7 +128,8 @@ class CenterProfileScreen extends StatelessWidget {
                                   const SizedBox(width: 15.0),
                                   Expanded(
                                     child: defaultButton(
-                                      text: 'Delete Groupe',
+                                      text:
+                                          '${getLang(context, "deleteCenter")}',
                                       color: redColor,
                                       height: 60.0,
                                       onPressedFunction: () {
@@ -151,7 +156,7 @@ class CenterProfileScreen extends StatelessWidget {
                 ),
               ],
             ),
-            drawer: defaultDrawer(context),
+            drawer: DrawerComponent(),
           );
         }
       },

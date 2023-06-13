@@ -1376,11 +1376,20 @@ class AppCubit extends Cubit<AppStates> {
       url: '/auto/keepers/report/monthly',
       token: token,
     ).then((value) {
+      /*************** */
+      /*************** */
+      /*************** */
+      /*************** */
+      /*************** */
+      /*************** */
+      /*************** */
+      /*************** */
       studentInReport = [];
       value.data.forEach((v) {
         studentInReport!.add(v);
       });
-
+      print(studentInReport);
+      print('studentInReport');
       emit(SuccessGetReportState());
     }).catchError((error) {
       Map<String, dynamic> responseData =
@@ -1927,5 +1936,13 @@ class AppCubit extends Cubit<AppStates> {
       printStatement(error.toString());
       emit(ErrorDeleteGroupeState());
     });
+  }
+
+  /* Change Language */
+
+  // String? changeLanguageTxt;
+  changeLanguage({required String? language}) {
+    lang = language;
+    emit(ChangeLanguageState());
   }
 }

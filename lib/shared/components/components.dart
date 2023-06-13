@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:quran_automated/modules/user/login/login_screen.dart';
 import 'package:quran_automated/modules/user/splash_screen.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
+import 'package:quran_automated/shared/network/end_point.dart';
 import 'package:quran_automated/shared/network/local/cache_helper.dart';
 import 'package:quran_automated/shared/style/style.dart';
 
@@ -35,7 +37,7 @@ defaultTextFormField({
       onFieldSubmitted: onSubmitted,
       enabled: isClickable,
       obscureText: obscurePassword,
-      style: TextStyle(fontSize: fontLabel),
+      style: TextStyle(fontSize: fontLabel, fontFamily: 'Tajawal'),
       scrollPadding: scrollPadding,
       decoration: InputDecoration(
         labelText: label,
@@ -46,6 +48,14 @@ defaultTextFormField({
         ),
         hintText: label,
         hintStyle: TextStyle(
+          fontFamily: 'Noto Sans Arabic',
+          fontSize: fontLabel,
+        ),
+        helperStyle: TextStyle(
+          fontFamily: 'Noto Sans Arabic',
+          fontSize: fontLabel,
+        ),
+        errorStyle: TextStyle(
           fontFamily: 'Noto Sans Arabic',
           fontSize: fontLabel,
         ),
@@ -100,95 +110,6 @@ drawerIcon(context) => IconButton(
       onPressed: () => Scaffold.of(context).openDrawer(),
     );
 
-defaultDrawer(context) => ClipRRect(
-      borderRadius: const BorderRadius.only(
-        // Radius.circular(20),
-        bottomRight: Radius.circular(150),
-        topRight: Radius.circular(150),
-      ),
-      child: SizedBox(
-        width: 250,
-        child: Drawer(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 25.0, vertical: 50.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 130.0,
-                      height: 130.0,
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(100.0),
-                        image: const DecorationImage(
-                            image: AssetImage('assets/images/image.jpg')),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 40.0),
-                TextButton(
-                  onPressed: () {
-                    // navigateAndRemove(context, KeeperProfileScreen());
-                  },
-                  child: Text(
-                    'My Profile',
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    // Navigator.pop(context);
-                  },
-                  child: Text(
-                    'Daily Record',
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    // navigateAndRemove(context, const WhatAreWeScreen());
-                  },
-                  child: Text(
-                    'For We',
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    // navigateAndRemove(context, const WhatAreWeScreen());
-                  },
-                  child: Text(
-                    'Vision & Goals',
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                ),
-                const SizedBox(height: 15.0),
-                const Divider(
-                  color: Colors.black38,
-                ),
-                TextButton(
-                  onPressed: () {
-                    signOut(context);
-                  },
-                  child: Text(
-                    'Log Out',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                          color: redColor,
-                        ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-
 defaultAppBar({
   required BuildContext context,
   String? title,
@@ -212,11 +133,11 @@ deleteMessageDialog(context, {required function}) => showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Padding(
-            padding: EdgeInsets.only(bottom: 15.0),
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 15.0),
             child: Text(
-              'Are you sure to delete your account?',
-              style: TextStyle(
+              '${getLang(context, "msgConfirmDelete")}',
+              style: const TextStyle(
                 fontSize: 18.0,
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
@@ -231,7 +152,7 @@ deleteMessageDialog(context, {required function}) => showDialog(
                 children: [
                   Expanded(
                     child: defaultButton(
-                      text: 'Yes',
+                      text: '${getLang(context, "yes")}',
                       width: 70.0,
                       color: redColor,
                       onPressedFunction: function,
@@ -240,7 +161,7 @@ deleteMessageDialog(context, {required function}) => showDialog(
                   const SizedBox(width: 10.0),
                   Expanded(
                     child: defaultButton(
-                      text: 'No',
+                      text: '${getLang(context, "no")}',
                       width: 70.0,
                       onPressedFunction: () {
                         Navigator.pop(context);

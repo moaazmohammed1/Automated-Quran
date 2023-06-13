@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../models/all_student_in_groupe_model.dart';
 import '../../models/data_model.dart';
@@ -30,7 +32,7 @@ class _StoreStudentAttendanceScreenState
           AppCubit.get(context).getAllStudentsInGroupeData();
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Store Attendance OR Absence For Student'),
+              title: Text('${getLang(context, "storeAttendanceAbsence")}'),
               centerTitle: true,
             ),
             body: const Center(
@@ -46,7 +48,7 @@ class _StoreStudentAttendanceScreenState
                 studentsInGroupeModel!.group!.isNotEmpty) {
               return Scaffold(
                 appBar: AppBar(
-                  title: const Text('Store Attendance For Student'),
+                  title: Text('${getLang(context, "storeAttendanceAbsence")}'),
                   centerTitle: true,
                   actions: [
                     IconButton(
@@ -77,12 +79,14 @@ class _StoreStudentAttendanceScreenState
                         studentsInGroupeModel!.group![0].students!.length,
                   ),
                 ),
-                drawer: defaultDrawer(context),
+                drawer:   DrawerComponent(),
               );
             } else {
               return Scaffold(
                 appBar: AppBar(
-                  title: const Text('All Student\'s in Group'),
+                  title: Text(
+                    '${getLang(context, "allStudentsInGroup")}',
+                  ),
                   centerTitle: true,
                   actions: [
                     IconButton(
@@ -96,16 +100,16 @@ class _StoreStudentAttendanceScreenState
                 body: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
+                    children: [
+                      const Icon(
                         Icons.person_off_sharp,
                         color: Colors.grey,
                         size: 150.0,
                       ),
-                      SizedBox(height: 50.0),
+                      const SizedBox(height: 50.0),
                       Text(
-                        'Student\'s Not Found',
-                        style: TextStyle(
+                        '${getLang(context, "studentsNotFounds")}',
+                        style: const TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,
                           fontSize: 30.0,
@@ -114,13 +118,15 @@ class _StoreStudentAttendanceScreenState
                     ],
                   ),
                 ),
-                drawer: defaultDrawer(context),
+                drawer:   DrawerComponent(),
               );
             }
           } else {
             return Scaffold(
               appBar: AppBar(
-                title: const Text('All Student\'s in Group'),
+                title: Text(
+                  '${getLang(context, "allStudentsInGroup")}',
+                ),
                 centerTitle: true,
                 actions: [
                   IconButton(
@@ -152,7 +158,7 @@ class _StoreStudentAttendanceScreenState
                   ],
                 ),
               ),
-              drawer: defaultDrawer(context),
+              drawer:   DrawerComponent(),
             );
           }
         }
@@ -216,8 +222,8 @@ class _StoreStudentAttendanceScreenState
                     child: AppCubit.get(context)
                                 .mapStudentsInGroupe['${model.id}'] ==
                             0
-                        ? const Text('Click to Absence')
-                        : const Text('Click to Attendance'),
+                        ? Text('${getLang(context, "clickToAbsence")}')
+                        : Text('${getLang(context, "clickToAttendance")}'),
                   ),
                 ],
               ),

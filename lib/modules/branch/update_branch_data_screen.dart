@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quran_automated/shared/components/applocal.dart';
 import 'package:quran_automated/shared/components/components.dart';
 import 'package:quran_automated/shared/style/style.dart';
 import '../../models/all_branches_model.dart';
@@ -23,7 +24,9 @@ class UpdateBranchScreen extends StatelessWidget {
         localRegionController.text = data.localRegion ?? '';
         return Scaffold(
           appBar: defaultAppBar(
-              context: context, title: 'Update Branch', centerTitle: true),
+              context: context,
+              title: '${getLang(context, "updateBranchPage")}',
+              centerTitle: true),
           body: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             child: Padding(
@@ -38,11 +41,11 @@ class UpdateBranchScreen extends StatelessWidget {
                       keyboard: TextInputType.text,
                       validate: (String? value) {
                         if (value!.isEmpty) {
-                          return 'Branch Name is required';
+                          return '${getLang(context, "branchNameRequired")}';
                         }
                         return null;
                       },
-                      label: 'Branch Name',
+                      label: '${getLang(context, "branchName")}',
                     ),
                     const SizedBox(height: 20),
                     Container(
@@ -80,9 +83,10 @@ class UpdateBranchScreen extends StatelessWidget {
                                                         status: 'active');
                                               },
                                             ),
-                                            const Text(
-                                              'active',
-                                              style: TextStyle(fontSize: 18.0),
+                                            Text(
+                                              '${getLang(context, "active")}',
+                                              style: const TextStyle(
+                                                  fontSize: 18.0),
                                             ),
                                           ],
                                         ),
@@ -98,9 +102,10 @@ class UpdateBranchScreen extends StatelessWidget {
                                                         status: 'pending');
                                               },
                                             ),
-                                            const Text(
-                                              'pending',
-                                              style: TextStyle(fontSize: 18.0),
+                                            Text(
+                                              '${getLang(context, "pending")}',
+                                              style: const TextStyle(
+                                                  fontSize: 18.0),
                                             ),
                                           ],
                                         ),
@@ -116,9 +121,10 @@ class UpdateBranchScreen extends StatelessWidget {
                                                         status: 'inactive');
                                               },
                                             ),
-                                            const Text(
-                                              'inactive',
-                                              style: TextStyle(fontSize: 18.0),
+                                            Text(
+                                              '${getLang(context, "inactive")}',
+                                              style: const TextStyle(
+                                                  fontSize: 18.0),
                                             ),
                                           ],
                                         ),
@@ -135,7 +141,7 @@ class UpdateBranchScreen extends StatelessWidget {
                             Text(
                               AppCubit.get(context).selectedBranchStatus != ''
                                   ? AppCubit.get(context).selectedBranchStatus
-                                  : 'Branch Status',
+                                  : '${getLang(context, "branchStatus")}',
                               style: const TextStyle(
                                 fontSize: 20.0,
                                 fontWeight: FontWeight.bold,
@@ -156,11 +162,11 @@ class UpdateBranchScreen extends StatelessWidget {
                     defaultTextFormField(
                       controller: localRegionController,
                       keyboard: TextInputType.text,
-                      label: 'Local region (option)',
+                      label: '${getLang(context, "localRegion")}',
                     ),
                     const SizedBox(height: 30),
                     defaultButton(
-                      text: 'update',
+                      text: '${getLang(context, "updateButton")}',
                       height: 60.0,
                       fontSizeText: 18.0,
                       onPressedFunction: () {

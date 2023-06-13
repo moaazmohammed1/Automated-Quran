@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quran_automated/shared/components/components.dart';
+import 'package:quran_automated/shared/components/drawer_component.dart';
 
 class WhatAreWeScreen extends StatelessWidget {
   const WhatAreWeScreen({super.key});
@@ -41,7 +42,7 @@ class WhatAreWeScreen extends StatelessWidget {
           )
         ],
       ),
-      drawer: defaultDrawer(context),
+      drawer:   DrawerComponent(),
     );
   }
 }

@@ -1,0 +1,213 @@
+{
+    "myProfileTitle" : "ملفي",
+    "userData" : "بيانات الموظف.",
+    "name" : "الإسم:",
+    "identityNo" : "رقم الهوية:",
+    "phoneNo" : "رقم الهاتف:",
+    "email" : "الإيميل:",
+    "position" : "الوظيفة:",
+    "gender" : "الجنس:",
+    "accountStatus" : "حالة الحساب:",
+    "registerPageButton" : "صفحة التسجيل",
+    "followPageButton" : "صفحة المتابعة",
+    "updateMyAccountButton" : "تعديل بياناتي",
+    "deleteMyAccountButton" : "حذف حسابي",
+
+    "updateMyAccountTitle" :"تعديل بياناتي",
+    "firstName" :"الإسم الأول",
+    "secondName" :"الإسم الثاني",
+    "thirdName":"الإسم الثالث",
+    "lastName":"إسم العائلة",
+    "updateButton" :"تعديل",
+    "changePasswordButton" :"تغيير كلمة المرور",
+    "firstNameIsRequired" :"ادخال الاسم الاول إجباري",
+    "lastNameIsRequired" :"ادخال اسم العائلة إجباري",
+    "identityNoIsRequired" :"ادخال رقم الهوية إجباري",
+
+    "currentPassword" :"كلمة المرور الحالية",
+    "newPassword" :"كلمة المرور الجديدة",
+    "confirmPassword" :"تأكيد كلمة المرور",
+    "passwordIsTooShort" :"كلمة المرور قصيرة",
+    "saveButton" :"حفظ",
+
+    "addAdmin" :"إضافة طالب",
+    "addDS" :"إضافة مشرف",
+    "addKeeper" :"إضافة محفظ",
+    "addStudent" :"إضافة طالب",
+    "passwordIsRequired" :"كلمة المرور إجبارية",
+    "password" :"كلمة المرور",
+    "create":"إنشاء",
+
+    "admins":"مدراء",
+    "dss":"مشرفين",
+    "keepers":"محفظين",
+    "students":"الطلاب",
+    "branches":"فروع",
+    "centers":"مراكز",
+    "groups":"حلقات",
+    "storeStudentAbsence":"تسجيل حضور وغياب",
+    "report":"التقرير الشهري",
+    "testRepresented":"عرض علامات الطلاب",
+    "allReports":"جميع التقارير",
+    
+    "skip":"تخطي",
+    "title1":"العنوان الاول",
+    "title2":"العنوان الثاني",
+    "title3":"العنوان الثالث",
+    "body1":"نص الاول",
+    "body2":"نص الثاني",
+    "body3":"نص الثالث",
+    
+    "loginSuccess":"تمت عملية التسجيل بنجاح",
+    "loginError":"خطأ في التسجيل",
+    "loginTitle":"دار القرءان الكريم والسنة",
+    "login":"تسجيل الدخول",
+    "welcome":"أهلا وسهلا بك، أدخل بياناتك فضلا.",
+
+    "msgConfirmDelete":"هل انت متأكد من حذف حسابك بشكل نهائي؟",
+    "yes":"نعم",
+    "no":"لا",
+
+    "allStudents":"جميع الطلاب",
+    "studentsNotFounds":"لا يوجد طلاب في الحلقة",
+
+    "allStudentsInGroup":"طلاب الحلقة",
+
+    "attendanceAbsence":"الحضور و الغياب",
+    "dayIs":"اليوم",
+    "dateIs":"التاريخ",
+    "attendance":"حاضر",
+    "absence":"غايب",
+
+    "studentMemorization":"حفظ الطالب",
+    "memorization":"الحفظ",
+    "theKeep":"الحفظ",
+    "surah":"السورة",
+    "ayah":"الأية",
+    "fromAyah":"من الأية",
+    "toAyah":"الى الأية",
+    "faultsNumber":"عدد الأخطاء",
+
+    "myMark":"علامة الإختبار",
+    "markNotFound":"لا توجد علامة الإختبار",
+    "testInfo":"بيانات الإختبار.",
+    "fromJuz":"من الجزء:",
+    "toJuz":"الى الجزء:",
+    "typeTest":"نوع الإختبار: ",
+    "testMark":"علامة الإختبار: ",
+    "juz":"الجزء: ",
+    "student":"الطالب: ",
+
+    "storeAttendanceAbsence":"تسجيل حضور أو غياب",
+    "clickToAbsence":"اضغط لتسجيل غياب",
+    "clickToAttendance":"اضغط لتسجيل حضور",
+
+    "studentProfile":"ملف الطالب",
+    "deleteUserButton" : "حذف الحساب",
+    "updateUserButton" : "تعديل البيانات",
+
+    "updateStudentTitle" : "تعديل بيانات الطالب",
+
+    "allKeepers":"جميع المحفظين",
+    "keepersNotFounds":"لا يوجد محفظين في الحلقة",
+
+    "reportsNotFound":"لا يوجد تقارير",
+    "reportId":"رقم التقرير : ",
+    "reportMonth":"تقرير شهر : ",
+    "status":"حالة التقرير : ",
+
+    "allTest":"جميع الإختبارات",
+    "testsNotFounds":"لا يوجد اختبارات",
+
+    "testQuestions":"أسئلة الإختبار",
+    "enterStudentMark":"أدخل علامة الطالب",
+    "RequiredStudentMark":"إدخال علامة الطالب إجبارية",
+    "submitMark":"إرسال علامة الطالب",
+
+    "updateKeeper":"تعديل بيانات المحفظ",
+
+    "registerNewSave":"تسجيل حفظ جديد",
+    "studentName":"اسم الطالب: ",
+    "select":"اختار",
+
+    "monthlyMemorization":"الحفظ الشهري",
+    "absenceDays":"أيام الغياب",
+    "from":"من",
+    "to":"الى",
+    "studentNameReport":"اسم الطالب",
+
+    "generateQuestions":"اختيار أسئلة",
+    "placeEnterYourFromJuz":"إدخال من الجزء",
+    "fromJuzTest":"من الجزء",
+    "placeEnterYourToJuz":"إدخال الى الجزء",
+    "toJuzTest":"الى الجزء",
+    "placeEnterYourQuestionNumber":"إدخال عدد أسئلة الإختبار",
+    "questionNumber":"عدد أسئلة الإختبار",
+    "single":"اختبار لجزء واحد",
+    "group":"اختبار لعدة أجزاء",
+    "typeQuestion":"نوع الإختبار",
+
+    "addGroup":"إضافة مجموعة",
+    "groupNameRequired":"اسم الحلقة اجباري",
+    "groupName":"اسم الحلقة",
+    "active":"نشط",
+    "pending":"قيد انتظار التنشيط",
+    "inactive":"غير نشط",
+    "groupeStatus":"حالة الحلقة",
+    "localRegion":"المنطقة المحلية",
+    "center":"مركز",
+    "keeper":"محفظ",
+    
+    "allGroups":"جميع الحلقات",
+    "groupsNotFound":"جميع الحلقات",
+
+    "groupProfile":"ملف الحلقة",
+    "updateGropePage":"تعديل بيانات الحلقة",
+    "deleteGrope":"حذف الحلقة",
+
+    "allDs":"جميع المشرفين",
+    "dsNotFound":"لا يوجد مشرفين",
+
+    "reportInfo":"بيانات التقرير",
+
+    "updateDs":"تعديل بيانات المشرف",
+
+    "updateAdmin":"تعديل بيانات المدير",
+
+    "allAdmins":"جميع المدراء",
+    "adminsNotFound":"لا يوجد مدراء",
+
+    "addCenter":"إضافة مركز",
+    "centerNameRequired":"اسم المركز اجباري",
+    "centerName":"اسم المركز",
+    "centerStatus":"حالة المركز",
+    "branch":"الفرع",
+    
+    "allCenters":"جميع المراكز",
+    "centersNotFound":"لا يوجد مراكز",
+    
+    "centerProfile":"ملف المركز",
+    "updateCenterPage":"تعديل بيانات المركز",
+    "deleteCenter":"حذف المركز",
+
+    "branchNameRequired":"اسم الفرع اجباري",
+    "branchName":"اسم الفرع",
+
+    "addBranch":"إضافة فرع",
+    
+    "branchStatus":"حالة الفرع",
+    
+    "allBranches":"جميع الفروع",
+    "branchesNotFound":"لا يوجد فروع",
+    
+    "branchProfile":"ملف الفرع",
+    "updateBranchPage":"تعديل بيانات الفرع",
+    "deleteBranch":"حذف الفرع",
+
+    "arabicLanguage":"اللغة العربية",
+    "englishLanguage":"اللغة الإنجليزية",
+
+    "logout":"تسجيل الخروج",
+
+    "out":"خروج"
+}
