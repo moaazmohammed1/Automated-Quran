@@ -1,0 +1,23 @@
+{
+  "name": "quran_automated",
+  "version": "1.0.0",
+  "description": "advance flutter app",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moaazmohammed1/Automated-Quran-Memorization-System.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moaazmohammed1/Automated-Quran-Memorization-System/issues"
+  },
+  "homepage": "https://github.com/moaazmohammed1/Automated-Quran-Memorization-System#readme"
+}

@@ -2,19 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:quran_automated/modules/all.dart';
-import 'package:quran_automated/modules/keeper/keeper_list.dart';
-import 'package:quran_automated/modules/manage_account/home_screen.dart';
-import 'package:quran_automated/modules/user/login/login_screen.dart';
-import 'package:quran_automated/modules/user/splash_screen.dart';
-import 'package:quran_automated/shared/components/applocal.dart';
-import 'package:quran_automated/shared/components/components.dart';
-import 'package:quran_automated/shared/cubit/app_cubit.dart';
-import 'package:quran_automated/shared/cubit/app_states.dart';
-import 'package:quran_automated/shared/network/end_point.dart';
-import 'package:quran_automated/shared/network/local/cache_helper.dart';
-import 'package:quran_automated/shared/style/style.dart';
-import 'shared/network/remote/dio_helper.dart';
+import 'package:quran_automated/view/manage_account/home_screen.dart';
+import 'package:quran_automated/view/user/login/login_screen.dart';
+import 'package:quran_automated/view/user/splash_screen.dart';
+import 'package:quran_automated/controllers/applocal.dart';
+import 'package:quran_automated/view/components/components.dart';
+import 'package:quran_automated/controllers/cubit/app_cubit.dart';
+import 'package:quran_automated/controllers/cubit/app_states.dart';
+import 'package:quran_automated/controllers/network/end_point.dart';
+import 'package:quran_automated/controllers/network/local/cache_helper.dart';
+import 'controllers/network/remote/dio_helper.dart';
+import 'view/style/style.dart';
 
 void main() async {
   DioHelper.init();
@@ -63,12 +61,6 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Automated Quran Memorization System',
             theme: lightMode,
-            // home: AllPages(),
-            // home: TestScreen(),
-            // home: const Directionality(
-            //   textDirection: TextDirection.rtl,
-            //   child: MyHomePage(),
-            // ),
             home: startWidget,
             localizationsDelegates: const [
               AppLocale.delegate,
